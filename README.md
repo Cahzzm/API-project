@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-![Db_api_schema.png]
+![Db_api_schema](https://user-images.githubusercontent.com/93847457/196804676-a77c3f47-04b3-45a8-a10a-d5ff4d39297c.png)
 
 ## API Documentation
 
