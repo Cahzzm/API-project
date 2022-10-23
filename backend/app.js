@@ -7,16 +7,19 @@ const cors = require('cors');
 const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
-const { environment } = require('./config');
-const { ValidationError } = require('sequelize');
-const isProduction = environment === 'production';
-const app = express()
+
 const routes = require('./routes');
+
+const { ValidationError } = require('sequelize');
+
+const { environment } = require('./config');
+const isProduction = environment === 'production';
+
+const app = express()
 
 app.use(morgan('dev'))
 
 app.use(cookieParser());
-
 app.use(express.json());
 
 // Security Middleware
@@ -43,7 +46,7 @@ app.use(
     })
     );
 
-  app.use(routes);
+app.use(routes);
 
     // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
@@ -76,5 +79,5 @@ app.use((err, _req, res, _next) => {
   });
 })
 
-  module.exports = app;
+module.exports = app;
 //testing
