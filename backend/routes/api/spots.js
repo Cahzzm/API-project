@@ -36,5 +36,9 @@ router.get('/', async (req, res, next) => {
     res.json(spots)
 })
 
+// router.post('/'. async (req, res, next) => {
+
+// })
+
 
 module.exports = router

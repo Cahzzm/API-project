@@ -25,6 +25,14 @@ module.exports = {
         hashedPassword: bcrypt.hashSync('password3'),
         firstName: 'demo',
         lastName: 'user'
+      },
+
+      {
+        email: 'user3@user.io',
+        username: 'FakeUser3',
+        hashedPassword: bcrypt.hashSync('password4'),
+        firstName: 'demo',
+        lastName: 'user'
       }
     ], {});
 
@@ -79,6 +87,36 @@ module.exports = {
         name: "Cap Academy",
         description: "Place where web developers are sarcastic",
         price: 126
+      }
+    ])
+
+    await queryInterface.bulkInsert('Bookings', [
+      {
+        spotId: 1,
+        userId: 1,
+        startDate: '2022-10-25',
+        endDate: '2022-10-29'
+      },
+
+      {
+        spotId: 2,
+        userId: 2,
+        startDate: '2022-10-25',
+        endDate: '2022-10-29'
+      },
+
+      {
+        spotId: 3,
+        userId: 3,
+        startDate: '2022-10-25',
+        endDate: '2022-10-29'
+      },
+
+      {
+        spotId: 4,
+        userId: 4,
+        startDate: '2022-10-25',
+        endDate: '2022-10-29'
       }
     ])
 
@@ -160,46 +198,18 @@ module.exports = {
       }
     ])
 
-    await queryInterface.bulkInsert('Bookings', [
-      {
-        spotId: 1,
-        userId: 1,
-        startDate: '2022-10-25',
-        endDate: '2022-10-29'
-      },
-
-      {
-        spotId: 2,
-        userId: 2,
-        startDate: '2022-10-25',
-        endDate: '2022-10-29'
-      },
-
-      {
-        spotId: 3,
-        userId: 3,
-        startDate: '2022-10-25',
-        endDate: '2022-10-29'
-      },
-
-      {
-        spotId: 4,
-        userId: 4,
-        startDate: '2022-10-25',
-        endDate: '2022-10-29'
-      }
-    ])
   },
 
   down: async (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete('Bookings')
 
     await queryInterface.bulkDelete('ReviewImages')
 
     await queryInterface.bulkDelete('SpotImages')
 
     await queryInterface.bulkDelete('Reviews')
+
+    await queryInterface.bulkDelete('Bookings')
 
     await queryInterface.bulkDelete('Spots')
 
