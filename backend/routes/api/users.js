@@ -32,13 +32,17 @@ const validateSignup = [
     validateSignup,
     async (req, res) => {
       const { email, password, username, firstName, lastName } = req.body;
-      const user = await User.signup({ email, username, password, firstName, lastName });
+      let user = await User.signup({ email, username, password, firstName, lastName });
 
       await setTokenCookie(res, user);
+      user = user.toJSON()
+      delete user.createdAt
+      delete user.updatedAt
+      user.token = ""
 
-      return res.json({
+      return res.json(
         user
-      });
+      );
     }
   );
 
