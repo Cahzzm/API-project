@@ -67,7 +67,6 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const { spotId } = req.params
     const spot = await Spot.findByPk(+spotId)
     const { url, preview } = req.body
-    // const { user } = req
 
     if(!spot) {
         res.status(404)
@@ -130,7 +129,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 ]
             ]
         },
-        group: ['Spot.id', 'SpotImages.url']
+        group: ['Spot.ownerId']
     })
     res.json({
         Spots: spots
@@ -177,7 +176,7 @@ router.get('/:spotId', async (req, res) => {
     if(!spot) {
         res.status(404)
         res.json({
-            message: 'Spot couldn"t be found',
+            message: "Spot couldn't be found",
             statusCode: 404
         })
     }
