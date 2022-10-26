@@ -3,6 +3,10 @@ const router = express.Router()
 
 
 const { Spot, Review, SpotImage, Sequelize, ReviewImage, Booking, User } = require('../../db/models')
+const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
+
 
 router.get('/', async (req, res, next) => {
     const spots = await Spot.findAll({
@@ -36,7 +40,8 @@ router.get('/', async (req, res, next) => {
     res.json(spots)
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', requireAuth, async (req, res, next) => {
+    const ownerId = req.user.id
     const { address, city, state, country, lat, lng, name, description, price } = req.body
     const spot = await Spot.create({
         address,
@@ -47,7 +52,8 @@ router.post('/', async (req, res, next) => {
         lng,
         name,
         description,
-        price
+        price,
+        ownerId: req.user.id
     })
 
     res.json(spot)
