@@ -111,9 +111,6 @@ router.get('/current', requireAuth, async (req, res) => {
             },
             {
                 model: SpotImage,
-                where: {
-                    preview:true
-                },
                 attributes: []
             }
         ],
@@ -168,7 +165,7 @@ router.get('/:spotId', async (req, res) => {
                 ]
             ]
         },
-        group: ['Spot.id']
+        group: ['Spot.id', 'SpotImages.id']
     })
 
     if(!spot) {
