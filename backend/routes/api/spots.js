@@ -59,5 +59,7 @@ router.post('/', requireAuth, async (req, res, next) => {
     res.json(spot)
 })
 
+router.post('')
+
 
 module.exports = router

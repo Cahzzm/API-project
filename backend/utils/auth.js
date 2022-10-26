@@ -55,11 +55,15 @@ const requireAuth = [ restoreUser,
    function (req, _res, next) {
     if (req.user) return next();
 
-    const err = new Error('Unauthorized');
-    err.title = 'Unauthorized';
-    err.errors = ['Unauthorized'];
-    err.status = 401;
-    return next(err);
+    // const err = new Error('Unauthorized');
+    // err.title = 'Unauthorized';
+    // err.errors = ['Unauthorized'];
+    // err.status = 401;
+    _res.status(401)
+    const response = _res.json({
+      message: "Authentication required",
+    })
+    return next(response);
   }
 ];
 module.exports = { setTokenCookie, restoreUser, requireAuth };
