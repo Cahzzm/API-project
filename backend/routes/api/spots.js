@@ -129,7 +129,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 ]
             ]
         },
-        group: ['Spot.id', 'Spot.ownerId']
+        group: ['Spot.id', 'Spot.ownerId', 'SpotImages.url']
     })
     res.json({
         Spots: spots
