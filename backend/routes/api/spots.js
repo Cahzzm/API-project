@@ -102,7 +102,9 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
 router.get('/current', requireAuth, async (req, res) => {
     const ownerId = req.user.id
     const spots = await Spot.findAll({
-        where: ownerId,
+        where: {
+            ownerId
+        },
         include: [
             {
                 model: Review,
@@ -129,7 +131,7 @@ router.get('/current', requireAuth, async (req, res) => {
                 ]
             ]
         },
-        group: ['Spot.id', 'Spot.ownerId', 'SpotImages.url']
+        group: ['Spot.ownerId', 'Spot.id', 'SpotImages.url']
     })
     res.json({
         Spots: spots
