@@ -43,6 +43,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', requireAuth, async (req, res, next) => {
     const ownerId = req.user.id
     const { address, city, state, country, lat, lng, name, description, price } = req.body
+
     const spot = await Spot.create({
         address,
         city,
@@ -95,5 +96,43 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     res.json(spotImage)
 })
 
+router.get('/current', requireAuth, async (req, res) => {
+    const ownerId = req.user.id
+    const spots = await Spot.findAll({
+        where: ownerId,
+        include: [
+            {
+                model: Review,
+                attributes: []
+            },
+            {
+                model: SpotImage,
+                where: {
+                    preview:true
+                },
+                attributes: []
+            }
+        ],
+        attributes: {
+            include: [
+                [
+                    Sequelize.fn("AVG", Sequelize.col("Reviews.stars")),
+                    "avgRating"
+                ],
+                [
+                    Sequelize.col("SpotImages.url"),
+                    "previewImage"
+                ]
+            ]
+        },
+        group: ["Spot.id", "SpotImages.url"]
+    })
+    res.json(spots)
+})
+
+router.get('/:spotId', async (req, res) => {
+    const spotId = req.params
+    const spot = await Spot.findByPk(spotId)
+})
 
 module.exports = router
