@@ -111,11 +111,11 @@ router.get('/current', requireAuth, async (req, res) => {
             },
             {
                 model: SpotImage,
+                attributes: [],
                 where: {
                     preview: true
                 },
-                required: false,
-                attributes: []
+                required: false
             }
         ],
         attributes: {
@@ -132,7 +132,9 @@ router.get('/current', requireAuth, async (req, res) => {
         },
         group: ['Spot.id', 'SpotImages.url']
     })
-    res.json(spots)
+    res.json({
+        Spots: spots
+    })
 })
 
 // get details of a spot by the spot's id
