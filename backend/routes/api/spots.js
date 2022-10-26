@@ -53,7 +53,7 @@ router.post('/', requireAuth, async (req, res, next) => {
         name,
         description,
         price,
-        ownerId: req.user.id
+        ownerId
     })
 
     res.json(spot)
