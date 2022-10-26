@@ -7,7 +7,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-
+// get all spots
 router.get('/', async (req, res, next) => {
     const spots = await Spot.findAll({
         include: [
@@ -26,20 +26,21 @@ router.get('/', async (req, res, next) => {
         attributes: {
             include: [
                 [
-                    Sequelize.fn("AVG", Sequelize.col("Reviews.stars")),
-                    "avgRating"
+                    Sequelize.fn('AVG', Sequelize.col('Reviews.stars')),
+                    'avgRating'
                 ],
                 [
-                    Sequelize.col("SpotImages.url"),
-                    "previewImage"
+                    Sequelize.col('SpotImages.url'),
+                    'previewImage'
                 ]
             ]
         },
-        group: ["Spot.id", "SpotImages.url"]
+        group: ['Spot.id', 'SpotImages.url']
     })
     res.json(spots)
 })
 
+// create a spot
 router.post('/', requireAuth, async (req, res, next) => {
     const ownerId = req.user.id
     const { address, city, state, country, lat, lng, name, description, price } = req.body
@@ -57,9 +58,11 @@ router.post('/', requireAuth, async (req, res, next) => {
         ownerId
     })
 
+    res.status(201)
     res.json(spot)
 })
 
+// create an image for a spot
 router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     const { spotId } = req.params
     const spot = await Spot.findByPk(+spotId)
@@ -69,7 +72,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     if(!spot) {
         res.status(404)
         res.json({
-            message: "Spot couldn't be found",
+            message: 'Spot couldn"t be found',
             statusCode: 404
         })
     }
@@ -77,7 +80,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     if(spot.ownerId !== req.user.id) {
         res.status(403)
         res.json({
-            message: "Forbidden",
+            message: 'Forbidden',
             statusCode: 403
         })
     }
@@ -96,6 +99,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     res.json(spotImage)
 })
 
+// get spots of a current user
 router.get('/current', requireAuth, async (req, res) => {
     const ownerId = req.user.id
     const spots = await Spot.findAll({
@@ -116,23 +120,66 @@ router.get('/current', requireAuth, async (req, res) => {
         attributes: {
             include: [
                 [
-                    Sequelize.fn("AVG", Sequelize.col("Reviews.stars")),
-                    "avgRating"
+                    Sequelize.fn('AVG', Sequelize.col('Reviews.stars')),
+                    'avgRating'
                 ],
                 [
-                    Sequelize.col("SpotImages.url"),
-                    "previewImage"
+                    Sequelize.col('SpotImages.url'),
+                    'previewImage'
                 ]
             ]
         },
-        group: ["Spot.id", "SpotImages.url"]
+        group: ['Spot.id', 'SpotImages.url']
     })
     res.json(spots)
 })
 
+// get details of a spot by the spot's id
 router.get('/:spotId', async (req, res) => {
-    const spotId = req.params
-    const spot = await Spot.findByPk(spotId)
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId, {
+        include: [
+            {
+                model: Review,
+                attributes: []
+            },
+            {
+                model: SpotImage,
+                attributes: [ 'id', 'url', 'preview' ]
+            },
+            {
+                model: User,
+                as: 'Owner',
+                where: {
+                    id: spotId
+                },
+                attributes: [ 'id', 'firstName', 'lastName' ]
+            }
+        ],
+        attributes: {
+            include: [
+                [
+                    Sequelize.fn('COUNT', Sequelize.col('Reviews.review')),
+                    'numReviews'
+                ],
+                [
+                    Sequelize.fn('AVG', Sequelize.col('Reviews.stars')),
+                    'avgRating'
+                ]
+            ]
+        },
+        group: ['Spot.id']
+    })
+
+    if(!spot) {
+        res.status(404)
+        res.json({
+            message: 'Spot couldn"t be found',
+            statusCode: 404
+        })
+    }
+
+    res.json(spot)
 })
 
 module.exports = router
