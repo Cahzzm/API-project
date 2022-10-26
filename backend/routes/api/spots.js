@@ -183,4 +183,55 @@ router.get('/:spotId', async (req, res) => {
     res.json(spot)
 })
 
+// edit a spot
+router.put('/:spotId', requireAuth, async (req, res) => {
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId)
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
+
+    if(!spot) {
+        res.status(404)
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if(
+        address === undefined || city === undefined || state === undefined ||
+        country === undefined || lat === undefined || lng === undefined ||
+        name === undefined || description === undefined || price === undefined
+        ) {
+        res.status(400)
+        res.json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: {
+                address: "Street address is required",
+                city: "City is required",
+                state: "State is required",
+                country: "Country is required",
+                lat: "Latitude is not valid",
+                lng: "Longitude is not valid",
+                name: "Name must be less than 50 characters",
+                description: "Description is required",
+                price: "Price per day is required"
+            }
+        })
+    }
+
+    if(address !== undefined) spot.address = address
+    if(city !== undefined) spot.city = city
+    if(state !== undefined) spot.state = state
+    if(country !== undefined) spot.country = country
+    if(lat !== undefined) spot.lat = lat
+    if(lng !== undefined) spot.lng = lng
+    if(name !== undefined) spot.name = name
+    if(description !== undefined) spot.description = description
+    if(price !== undefined) spot.price = price
+
+    await spot.save()
+    res.json(spot)
+})
+
 module.exports = router
