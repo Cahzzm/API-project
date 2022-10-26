@@ -36,9 +36,22 @@ router.get('/', async (req, res, next) => {
     res.json(spots)
 })
 
-// router.post('/'. async (req, res, next) => {
+router.post('/', async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const spot = await Spot.create({
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+    })
 
-// })
+    res.json(spot)
+})
 
 
 module.exports = router
