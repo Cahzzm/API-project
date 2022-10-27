@@ -40,7 +40,7 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     })
 
     reviewImageCount = reviewImageCount.toJSON()
-    
+
     if(reviewImageCount.imageCount > 10) {
         res.status(403)
         res.json({
@@ -55,6 +55,62 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     delete reviewImage.reviewId
 
     res.json(reviewImage)
+})
+
+// get reviews of current user
+router.get('/current', requireAuth, async (req, res) => {
+    const userId = req.user.id
+    const reviews = await Review.findAll({
+        // raw: true,
+        where: {
+            userId
+        },
+        include: [
+            {
+                model: User,
+                attributes: [ 'id', 'firstName', 'lastName' ]
+            },
+            {
+                model: ReviewImage,
+                attributes: [ 'id', 'url' ]
+            }
+        ],
+    })
+
+    let reviewInfo = []
+
+    for(let review of reviews) {
+        review = review.toJSON()
+        let spot = await Spot.findByPk(review.spotId, {
+            include: [
+                {
+                    model: SpotImage,
+                    where: {
+                        preview: true
+                    },
+                    required: false,
+                    attributes: []
+                }
+            ],
+            attributes: {
+                include: [
+                    [
+                        Sequelize.col('SpotImages.url'),
+                        'previewImage'
+                    ]
+                ],
+                exclude: [
+                    'updatedAt', 'createdAt'
+                ]
+            },
+            group: [ 'Spot.id', 'SpotImages.url' ]
+        })
+
+        review.Spot = spot
+        reviewInfo.push(review)
+    }
+
+    res.json({Reviews: reviewInfo})
 })
 
 module.exports = router
