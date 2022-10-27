@@ -113,5 +113,38 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({Reviews: reviewInfo})
 })
 
+// edit a review
+router.put('/:reviewId', requireAuth, async (req, res) => {
+    const { reviewId } = req.params
+    const { review, stars } = req.body
+    const newReview = await Review.findByPk(reviewId)
+
+    if(!newReview) {
+        res.status(404)
+        res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if((review === undefined) || (stars > 5 || stars < 1)) {
+        res.status(400)
+        res.json({
+            message: "Validation error",
+            statusCode: 400,
+            errors: {
+              review: "Review text is required",
+              stars: "Stars must be an integer from 1 to 5"
+            }
+        })
+    }
+
+    if(review !== undefined) newReview.review = review
+    if(stars <= 5 && stars >= 1) newReview.stars = stars
+
+    await newReview.save()
+    
+    res.json(newReview)
+})
 
 module.exports = router
