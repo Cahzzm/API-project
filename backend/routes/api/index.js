@@ -4,15 +4,19 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const spotsRouter = require('./spots.js')
 const reviewsRouter = require('./reviews.js')
-const { requireAuth } = require('../../utils/auth.js');
+const bookingsRouter = require('./bookings.js')
 
+const { requireAuth } = require('../../utils/auth.js');
 const { restoreUser } = require('../../utils/auth.js');
 const { setTokenCookie } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
 
 router.use(restoreUser);
 
+
 router.use('/session', sessionRouter);
+
+router.use('/bookings', bookingsRouter)
 
 router.use('/users', usersRouter);
 
