@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 
-const { Spot, Review, SpotImage, Sequelize, ReviewImage, Booking, User } = require('../../db/models')
+const { Spot, Review, SpotImage, Sequelize, ReviewImage, Booking, User, sequelize } = require('../../db/models')
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -22,12 +22,37 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     }
 
     let reviewImage = await ReviewImage.create({
-        url
+        url,
+        reviewId: review.id
     })
+
+    let reviewImageCount = await ReviewImage.findOne({
+        where: {
+            reviewId
+        },
+
+        attributes: [
+            [
+                Sequelize.fn("COUNT", Sequelize.col('ReviewImage.url')),
+                "imageCount"
+            ]
+        ]
+    })
+
+    reviewImageCount = reviewImageCount.toJSON()
+    
+    if(reviewImageCount.imageCount > 10) {
+        res.status(403)
+        res.json({
+            message: "Maximum number of images for this resource was reached",
+            statusCode: 403
+        })
+    }
 
     reviewImage = reviewImage.toJSON()
     delete reviewImage.createdAt
     delete reviewImage.updatedAt
+    delete reviewImage.reviewId
 
     res.json(reviewImage)
 })
