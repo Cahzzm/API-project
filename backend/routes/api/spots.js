@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 const { Spot, Review, SpotImage, Sequelize, ReviewImage, Booking, User } = require('../../db/models')
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
+const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -286,5 +286,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
     res.json(spotReview)
 })
+
 
 module.exports = router
