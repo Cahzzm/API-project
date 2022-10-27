@@ -319,4 +319,19 @@ router.get('/:spotId/reviews', async (req, res) => {
     res.json({Reviews: reviews})
 })
 
+// create a booking base on a spots Id
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const { spotId } = req.params
+    const { startDate, endDate } = req.body
+    const spot = await Spot.findByPk(spotId)
+
+    if(!spot) {
+        res.status(404)
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+})
+
 module.exports = router
