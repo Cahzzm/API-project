@@ -287,5 +287,36 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     res.json(spotReview)
 })
 
+// get reviews by spot id
+router.get('/:spotId/reviews', async (req, res) => {
+    const { spotId } = req.params
+    const spot = await Spot.findByPk(spotId)
+    const reviews = await Review.findAll({
+        where: {
+            spotId
+        },
+        include: [
+            {
+                model: User,
+                attributes: [ 'id', 'firstName', 'lastName' ]
+            },
+            {
+                model: ReviewImage,
+                attributes: [ 'id', 'url' ]
+            }
+        ]
+    })
+
+    if(!spot) {
+        res.status(404)
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+
+    res.json({Reviews: reviews})
+})
 
 module.exports = router
