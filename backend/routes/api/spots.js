@@ -59,6 +59,7 @@ router.get('/', async (req, res, next) => {
             size
         })
     }
+    else {
 
     const spots = await Spot.findAll({
         include: [
@@ -90,6 +91,7 @@ router.get('/', async (req, res, next) => {
         group: ['Spot.id', 'SpotImages.url', 'Review.stars']
     })
     res.json({Spots: spots})
+  }
 })
 
 // create a spot
