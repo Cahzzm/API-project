@@ -10,7 +10,7 @@ const spot = require('../../db/models/spot');
 
 // get all spots
 router.get('/', async (req, res, next) => {
-    if(Object.values(req.query)) {
+    if(Object.values(req.query).length) {
         let {
             page, size,
             minLat, maxLat,
