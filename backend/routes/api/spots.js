@@ -72,7 +72,7 @@ router.post('/:spotId/images', requireAuth, async (req, res, next) => {
     if(!spot) {
         res.status(404)
         res.json({
-            message: 'Spot couldn"t be found',
+            message: "Spot couldn't be found",
             statusCode: 404
         })
     }

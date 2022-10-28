@@ -38,7 +38,7 @@ const validateSignup = [
       user = user.toJSON()
       delete user.createdAt
       delete user.updatedAt
-      user.token = ""
+      user.token = ''
 
       return res.json(
         user
