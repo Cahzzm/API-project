@@ -32,7 +32,35 @@ const validateSignup = [
     validateSignup,
     async (req, res) => {
       const { email, password, username, firstName, lastName } = req.body;
-      let user = await User.signup({ email, username, password, firstName, lastName });
+
+      const userEmail = await User.findOne({ where: {email}})
+      const userUsername = await User.findOne({where: {username}})
+
+      // for(let useR of users) {
+        //   useR = user.toJSON()
+        if(userEmail.email === email) {
+          res.status(403)
+          res.json({
+            message: "User already exists",
+            statusCode: 403,
+            errors: {
+              email: "User with that email already exists"
+            }
+          })
+        }
+
+        if(userUsername.username === username) {
+          res.status(403)
+          res.json({
+            message: "User already exists",
+            statusCode: 403,
+            errors: {
+              username: "User with that username already exists"
+            }
+          })
+        }
+
+        let user = await User.signup({ email, username, password, firstName, lastName });
 
       await setTokenCookie(res, user);
 
