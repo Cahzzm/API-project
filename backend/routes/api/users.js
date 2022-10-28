@@ -44,9 +44,6 @@ const validateSignup = [
         }
       })
 
-      // userEmail = userEmail.toJSON()
-      // userUsername = userUsername.toJSON()
-
         if(userEmail) {
           res.status(403)
           res.json({
@@ -71,12 +68,12 @@ const validateSignup = [
 
         let user = await User.signup({ email, username, password, firstName, lastName });
 
-      setTokenCookie(res, user);
+      const token = await setTokenCookie(res, user);
 
       user = user.toJSON()
       delete user.createdAt
       delete user.updatedAt
-      user.token = ''
+      user.token = token
 
       return res.json(
         user
