@@ -47,7 +47,7 @@ const validateSignup = [
       // userEmail = userEmail.toJSON()
       // userUsername = userUsername.toJSON()
 
-        if(userEmail.email) {
+        if(userEmail) {
           res.status(403)
           res.json({
             message: "User already exists",
@@ -58,7 +58,7 @@ const validateSignup = [
           })
         }
 
-        else if(userUsername.username) {
+        else if(userUsername) {
           res.status(403)
           res.json({
             message: "User already exists",
