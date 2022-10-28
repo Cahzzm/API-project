@@ -10,6 +10,24 @@ const spot = require('../../db/models/spot');
 
 // get all spots
 router.get('/', async (req, res, next) => {
+    // if(req.query) {
+    //     let {
+    //         page, size,
+    //         minLat, maxLat,
+    //         minLng, maxLng,
+    //         minPrice, maxPrice
+    //       } = req.query;
+
+    //     page = parseInt(page)
+    //     size = parseInt(size)
+
+    //     //assign page and size defaults
+    //     if(Number.isNaN(page) || page <= 0) page = 1
+    //     if(Number.isNaN(size) || size <= 0) size = 20
+
+    //     if(page > 10) page = 10
+    //     if(size > 20) size = 20
+
     const spots = await Spot.findAll({
         include: [
             {
@@ -21,6 +39,7 @@ router.get('/', async (req, res, next) => {
                 where: {
                     preview:true
                 },
+                required: false,
                 attributes: []
             }
         ],
@@ -38,7 +57,7 @@ router.get('/', async (req, res, next) => {
         },
         group: ['Spot.id', 'SpotImages.url']
     })
-    res.json(spots)
+    res.json({Spots: spots})
 })
 
 // create a spot
@@ -285,6 +304,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
     spotReview = spotReview.toJSON()
 
+    res.status(201)
     res.json(spotReview)
 })
 
