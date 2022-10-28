@@ -143,8 +143,32 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
     if(stars <= 5 && stars >= 1) newReview.stars = stars
 
     await newReview.save()
-    
+
     res.json(newReview)
+})
+
+// delete a review
+router.delete('/:reviewId', requireAuth, async (req, res) => {
+    const { reviewId } = req.params
+    const currentUser = req.user.id
+    let review = await Review.findByPk(reviewId)
+
+    if(!review) {
+        res.status(404)
+        res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if(currentUser === review.userId) {
+        await review.destroy()
+        res.status(200)
+        res.json({
+            message: "Successfully deleted",
+            statusCode: 200
+        })
+    }
 })
 
 module.exports = router
