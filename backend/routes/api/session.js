@@ -34,12 +34,12 @@ const validateLogin = [
         return next(err);
       }
 
-      await setTokenCookie(res, user);
+      const token = await setTokenCookie(res, user);
 
       let result = user.toJSON()
       delete result.createdAt
       delete result.updatedAt
-      result.token = ""
+      result.token = token
 
       return res.json({
         ...result
