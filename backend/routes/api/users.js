@@ -62,7 +62,7 @@ const validateSignup = [
 
         let user = await User.signup({ email, username, password, firstName, lastName });
 
-      await setTokenCookie(res, user);
+      setTokenCookie(res, user);
 
       user = user.toJSON()
       delete user.createdAt
