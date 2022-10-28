@@ -10,23 +10,55 @@ const spot = require('../../db/models/spot');
 
 // get all spots
 router.get('/', async (req, res, next) => {
-    // if(req.query) {
-    //     let {
-    //         page, size,
-    //         minLat, maxLat,
-    //         minLng, maxLng,
-    //         minPrice, maxPrice
-    //       } = req.query;
+    if(Object.values(req.query)) {
+        let {
+            page, size,
+            minLat, maxLat,
+            minLng, maxLng,
+            minPrice, maxPrice
+          } = req.query;
 
-    //     page = parseInt(page)
-    //     size = parseInt(size)
+        page = parseInt(page)
+        size = parseInt(size)
 
-    //     //assign page and size defaults
-    //     if(Number.isNaN(page) || page <= 0) page = 1
-    //     if(Number.isNaN(size) || size <= 0) size = 20
+        //assign page and size defaults
+        if(Number.isNaN(page) || page <= 0) page = 1
+        if(Number.isNaN(size) || size <= 0) size = 20
 
-    //     if(page > 10) page = 10
-    //     if(size > 20) size = 20
+        if(page > 10) page = 10
+        if(size > 20) size = 20
+
+        let filteredSpots = await Spot.findAll({
+            limit: size,
+            offset: (page - 1) * size
+        })
+
+        let spotsReturn = []
+
+        for(let filteredSpot of filteredSpots) {
+            filteredSpot = filteredSpot.toJSON()
+            let spotImage = await SpotImage.findOne({
+                where: {
+                    spotId: filteredSpot.id,
+                    preview: true
+                }
+            })
+
+            if(!spotImage) {
+                filteredSpot.previewImage = null
+            } else {
+                spotImage = spotImage.toJSON()
+                filteredSpot.previewImage = spotImage.url
+            }
+            spotsReturn.push(filteredSpot)
+        }
+
+        res.json({
+            'Spots': spotsReturn,
+            page,
+            size
+        })
+    }
 
     const spots = await Spot.findAll({
         include: [

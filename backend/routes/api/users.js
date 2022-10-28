@@ -24,7 +24,7 @@ const validateSignup = [
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
       .withMessage('Password must be 6 characters or more.'),
-    handleValidationErrors
+    // handleValidationErrors
   ];
 
   router.post(
@@ -35,6 +35,7 @@ const validateSignup = [
       let user = await User.signup({ email, username, password, firstName, lastName });
 
       await setTokenCookie(res, user);
+
       user = user.toJSON()
       delete user.createdAt
       delete user.updatedAt
