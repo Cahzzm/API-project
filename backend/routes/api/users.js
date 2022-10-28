@@ -33,11 +33,20 @@ const validateSignup = [
     async (req, res) => {
       const { email, password, username, firstName, lastName } = req.body;
 
-      const userEmail = await User.findOne({ where: {email}})
-      const userUsername = await User.findOne({where: {username}})
+      let userEmail = await User.findOne({
+        where: {
+          email
+        }
+      })
+      let userUsername = await User.findOne({
+        where: {
+          username
+        }
+      })
 
-      // for(let useR of users) {
-        //   useR = user.toJSON()
+      userEmail = userEmail.toJSON()
+      userUsername = userUsername.toJSON()
+
         if(userEmail.email === email) {
           res.status(403)
           res.json({
