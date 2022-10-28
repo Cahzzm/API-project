@@ -26,7 +26,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       stars: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT(2,1)
       },
       createdAt: {
         allowNull: false,

@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     spotId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     review: DataTypes.STRING,
-    stars: DataTypes.INTEGER
+    stars: DataTypes.FLOAT(2,1)
   }, {
     sequelize,
     modelName: 'Review',
