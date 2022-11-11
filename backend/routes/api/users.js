@@ -76,7 +76,7 @@ const validateSignup = [
       user.token = token
 
       return res.json(
-        user
+        {user: user}
       );
     }
   );
