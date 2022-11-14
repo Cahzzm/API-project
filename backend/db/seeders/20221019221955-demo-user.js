@@ -1,6 +1,7 @@
 'use strict';
 const bcrypt = require("bcryptjs");
 const spot = require("../models/spot");
+const spotOneImage = require("../images/spot1.jpeg")
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -153,13 +154,13 @@ module.exports = {
     await queryInterface.bulkInsert('SpotImages', [
       {
         spotId: 1,
-        url: 'image.com',
+        url: spotOneImage,
         preview: true
       },
 
       {
         spotId: 2,
-        url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.insider.com%2F5cf9895011e2050f7032c103%3Fwidth%3D1000%26format%3Djpeg%26auto%3Dwebp&imgrefurl=https%3A%2F%2Fwww.businessinsider.com%2Ffrank-lloyd-wright-home-texas-listed-original-furnishings-photos-2019-6&tbnid=9KETDvehdFNlXM&vet=12ahUKEwj889fmm677AhW3kWoFHT_jAkIQMygAegUIARCBAw..i&docid=slaXJ9hsebmFpM&w=1000&h=750&q=houses&ved=2ahUKEwj889fmm677AhW3kWoFHT_jAkIQMygAegUIARCBAw",
+        url: "img.com",
         preview: true
       },
 
