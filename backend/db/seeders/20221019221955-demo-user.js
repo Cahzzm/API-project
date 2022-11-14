@@ -1,7 +1,7 @@
 'use strict';
 const bcrypt = require("bcryptjs");
 const spot = require("../models/spot");
-const spotOneImage = require("../images/spot1.jpeg")
+const spotOneImage = require("../images/spot1.jpg")
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -154,7 +154,7 @@ module.exports = {
     await queryInterface.bulkInsert('SpotImages', [
       {
         spotId: 1,
-        url: spotOneImage,
+        url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/brewster-mcleod-architects-1486154143.jpg?crop=1.00xw:1.00xh;0,0&resize=768:*",
         preview: true
       },
 
