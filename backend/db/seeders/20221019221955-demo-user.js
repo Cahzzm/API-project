@@ -1,7 +1,6 @@
 'use strict';
 const bcrypt = require("bcryptjs");
 const spot = require("../models/spot");
-const spotOneImage = require("../images/spot1.jpg")
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
