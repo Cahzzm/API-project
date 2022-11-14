@@ -159,7 +159,7 @@ module.exports = {
 
       {
         spotId: 2,
-        url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fnews.airbnb.com%2Fwp-content%2Fuploads%2Fsites%2F4%2F2020%2F09%2FShangriLaLa-Tiny-House-Mountaintop-Getaway-Topanga-CA.jpg&imgrefurl=https%3A%2F%2Fnews.airbnb.com%2Fthink-outside-the-box-tiny-homes-for-big-adventures%2F&tbnid=Pe3k_BSTvUxxzM&vet=12ahUKEwi9npDcma77AhXip2oFHZdvDuAQMygEegUIARC9AQ..i&docid=q3uEaM7PkYJxXM&w=4032&h=3024&q=homes%20on%20airbnb&ved=2ahUKEwi9npDcma77AhXip2oFHZdvDuAQMygEegUIARC9AQ",
+        url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.insider.com%2F5cf9895011e2050f7032c103%3Fwidth%3D1000%26format%3Djpeg%26auto%3Dwebp&imgrefurl=https%3A%2F%2Fwww.businessinsider.com%2Ffrank-lloyd-wright-home-texas-listed-original-furnishings-photos-2019-6&tbnid=9KETDvehdFNlXM&vet=12ahUKEwj889fmm677AhW3kWoFHT_jAkIQMygAegUIARCBAw..i&docid=slaXJ9hsebmFpM&w=1000&h=750&q=houses&ved=2ahUKEwj889fmm677AhW3kWoFHT_jAkIQMygAegUIARCBAw",
         preview: true
       },
 
