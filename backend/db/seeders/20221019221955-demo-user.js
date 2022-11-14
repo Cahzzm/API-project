@@ -159,19 +159,19 @@ module.exports = {
 
       {
         spotId: 2,
-        url: "img.com",
+        url: "https://housetipster.com/media/blog/HT456.jpg",
         preview: true
       },
 
       {
         spotId: 3,
-        url: 'imagery.com',
+        url: 'https://housetipster.com/media/blog/HT460.jpg',
         preview: true
       },
 
       {
         spotId: 4,
-        url: 'imagination.com',
+        url: 'https://cdn.homedit.com/wp-content/uploads/2016/07/Casa-china-blanca-luxury-villa.jpg',
         preview: true
       }
     ])
