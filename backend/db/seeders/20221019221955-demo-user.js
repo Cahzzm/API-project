@@ -159,7 +159,7 @@ module.exports = {
 
       {
         spotId: 2,
-        url: 'images.com',
+        url: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fnews.airbnb.com%2Fwp-content%2Fuploads%2Fsites%2F4%2F2020%2F09%2FShangriLaLa-Tiny-House-Mountaintop-Getaway-Topanga-CA.jpg&imgrefurl=https%3A%2F%2Fnews.airbnb.com%2Fthink-outside-the-box-tiny-homes-for-big-adventures%2F&tbnid=Pe3k_BSTvUxxzM&vet=12ahUKEwi9npDcma77AhXip2oFHZdvDuAQMygEegUIARC9AQ..i&docid=q3uEaM7PkYJxXM&w=4032&h=3024&q=homes%20on%20airbnb&ved=2ahUKEwi9npDcma77AhXip2oFHZdvDuAQMygEegUIARC9AQ",
         preview: true
       },
 
