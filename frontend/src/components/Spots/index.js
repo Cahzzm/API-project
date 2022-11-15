@@ -25,7 +25,7 @@ const Spots = () => {
                         </div>
                         <div className="info">
                             <div className="left-info-all">
-                                <Link to={`/spot/${spot?.id}`}>
+                                <Link to={`/spots/${spot?.id}`}>
                                     <h2 id="all-spots-title" key={spot?.id}>{spot?.name}</h2>
                                 </Link>
                                 <div className="line-div"></div>

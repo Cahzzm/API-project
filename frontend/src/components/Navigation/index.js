@@ -7,6 +7,8 @@ import './Navigation.css';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupFormPage from '../SignupFormPage'
+import Demo from './Demo';
+// import LoginFormModal from '../LoginFormModal'
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -30,6 +32,7 @@ function Navigation({ isLoaded }){
   return (
     <ul>
       <li>
+        <Demo />
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && (
         <ProfileButton user={sessionUser}
@@ -38,9 +41,13 @@ function Navigation({ isLoaded }){
         />
         )}
       </li>
-      {showModal && <Modal onClose={() => setShowModal(false)}>
+      {showModal && <Modal onClose={() => {
+        console.log("running close modal")
+        setShowModal(false)
+        }}>
         {login ? <LoginForm setShowModal={setShowModal}/> : <SignupFormPage setShowModal={setShowModal}/>}
-      </Modal>}
+      </Modal>
+      }
     </ul>
   );
 }

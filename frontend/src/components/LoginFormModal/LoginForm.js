@@ -13,9 +13,10 @@ function LoginForm({ setShowModal }) {
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
-    .then(setShowModal(false))
+    .then(() => setShowModal(false))
     .catch(
       async (res) => {
+        console.log("running .catch for login")
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }

@@ -80,7 +80,6 @@ body {
     position: absolute;
     left: 43.55%;
     top: 160%;
-    border: #ff385c 5px solid;
 }
 
 .where-to-go {
@@ -92,7 +91,7 @@ body {
 
 #host-btn:hover {
     box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.55);
-    background-color: rgb(97, 247, 202);
+    background-color: #ff385c;
     color: white;
 }
 
