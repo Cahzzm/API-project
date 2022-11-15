@@ -1,15 +1,18 @@
+import { csrfFetch } from "./csrf"
+
 const LOAD = 'spots/LOAD'
 const ADD_SPOT = 'spots/ADD_SPOT'
 
-export const loadSpots = list => ({
+const loadSpots = list => ({
     type: LOAD,
     list
 })
 
-export const addSpot = spot => ({
+const addSpot = spot => ({
     type: ADD_SPOT,
     spot
 })
+
 
 //------------THUNKS-----------//
 export const getSpotsThunk = () => async dispatch => {
@@ -21,8 +24,17 @@ export const getSpotsThunk = () => async dispatch => {
     }
 }
 
+export const getOneSpotThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`)
 
-export const createSpot = (payload) => async dispatch => {
+    if(response.ok) {
+        const spot = await response.json()
+        dispatch(addSpot(spot))
+    }
+}
+
+
+export const createSpotThunk = (payload) => async dispatch => {
     const response = await fetch(`api/spots`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -44,7 +56,7 @@ const initialState = {
 
 const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOAD:
+        case LOAD:{
             const allSpotsState = {}
             action.list.forEach(spot => (
                 allSpotsState[spot.id] = spot
@@ -54,7 +66,8 @@ const spotsReducer = (state = initialState, action) => {
                 ...state.list,
                 list: action.list
             }
-        case ADD_SPOT:
+        }
+        case ADD_SPOT:{
                 if(!state[action.spot.id]) {
                     const newSpotState = {
                         ...state,
@@ -72,6 +85,7 @@ const spotsReducer = (state = initialState, action) => {
                         ...action.spot
                     }
                 }
+            }
         default:
             return state
     }
