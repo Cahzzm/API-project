@@ -4,7 +4,7 @@ const LOAD = 'spots/LOAD'
 const LOAD_ONE = 'spots/LOAD_ONE'
 const ADD_SPOT = 'spots/ADD_SPOT'
 
-export const loadSpots = list => ({
+const loadSpots = list => ({
     type: LOAD,
     list
 })
@@ -30,9 +30,7 @@ export const getSpotsThunk = () => async dispatch => {
 }
 
 export const getOneSpotThunk = (spotId) => async dispatch => {
-    console.log("this is before the response")
     const response = await csrfFetch(`/api/spots/${spotId}`)
-    console.log("this is after the response")
 
     if(response.ok) {
         const spot = await response.json()
@@ -43,7 +41,7 @@ export const getOneSpotThunk = (spotId) => async dispatch => {
 
 
 export const createSpotThunk = (payload) => async dispatch => {
-    const response = await fetch(`api/spots`, {
+    const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -51,7 +49,7 @@ export const createSpotThunk = (payload) => async dispatch => {
 
     if(response.ok) {
         const newSpot = await response.json()
-        dispatch(addSpot(newSpot.Spots))
+        dispatch(addSpot(newSpot))
         return newSpot
     }
 }

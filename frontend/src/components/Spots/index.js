@@ -6,11 +6,13 @@ import "./spots.css"
 
 const Spots = () => {
     const dispatch = useDispatch()
-    const allSpots = useSelector(state => state.spots.list)
+    const allSpots = useSelector(state => state?.spots?.list)
 
     useEffect(() => {
         dispatch(getSpotsThunk())
     }, [dispatch])
+
+    if(!allSpots) return null
 
     return (
         <div className="main-container">
@@ -31,7 +33,7 @@ const Spots = () => {
                                 <div className="line-div"></div>
                                 <div className="guest-bed-bath-container">
                                     <div className="style-b-b-g">
-                                        <p key={spot?.id}>{spot.city}, {spot?.state}</p>
+                                        <p key={spot?.id}>{spot?.city}, {spot?.state}</p>
                                     </div>
                                 </div>
                             </div>

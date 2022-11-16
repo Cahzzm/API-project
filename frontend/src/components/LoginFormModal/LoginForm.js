@@ -16,7 +16,6 @@ function LoginForm({ setShowModal }) {
     .then(() => setShowModal(false))
     .catch(
       async (res) => {
-        console.log("running .catch for login")
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }

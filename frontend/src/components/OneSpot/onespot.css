@@ -108,8 +108,9 @@
 
 .address-div-one-spot {
     display: flex;
+    flex-direction: column;
     padding-left: 20.5%;
-    padding-bottom: 5px;
+    padding-bottom:10px;
 }
 
 .host-one-spot {
@@ -183,7 +184,7 @@
     font-weight: 500;
 }
 
-#cabin-yourself {
+#home-yourself {
     margin: 0;
     padding-left: 24.3%;
     font-weight: 500;
@@ -259,4 +260,3 @@
     padding-left: 25%;
     font-weight: 500;
 }
-

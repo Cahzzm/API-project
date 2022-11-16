@@ -1,0 +1,51 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+select,input {
+    margin: 10px 10px;
+    border-radius: 4px;
+}
+
+#form-container {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    margin: 5% 30%;
+    margin-top: 5%;
+    padding: 40px;
+}
+
+select, input {
+    width: 300px;
+}
+label {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin-right: 10%;
+    margin-left: 15%;
+    font-size: 20px;
+}
+
+#host-forms {
+    margin-bottom: 20%;
+}
+
+button.host-form {
+    text-align: center;
+    margin-left: 120px;
+    width: 30%;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#cancel-host-form {
+    padding-left: 20%;
+}
