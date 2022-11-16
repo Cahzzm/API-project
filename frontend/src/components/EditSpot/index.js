@@ -20,7 +20,7 @@ const EditSpot = () => {
     const [latitude, setLatitude] = useState(spotDetails?.latitude)
     const [longitude, setLongitude] = useState(spotDetails?.longitude)
     const [price, setPrice] = useState(spotDetails?.price)
-    const [previewImage, setPreviewImage] = useState(spotDetails?.SpotImages[0].url)
+    // const [previewImage, setPreviewImage] = useState(spotDetails?.SpotImages[0]?.url)
     const [description, setDescription] = useState(spotDetails?.description)
     const [errorValidations, setErrorValidations] = useState([])
 
@@ -36,16 +36,17 @@ const EditSpot = () => {
             latitude,
             longitude,
             price,
-            image: spotDetails.SpotImages[0].url,
+            // image: spotDetails?.SpotImages[0]?.url,
             description,
             ownerId: session.user.id,
         }
-        let editedSpot = await dispatch(editSpotThunk(newSpot))
+        console.log("THIS IS THE NEWSPOT", newSpot)
+        console.log(spotId)
+        let editedSpot = await dispatch(editSpotThunk(newSpot, spotDetails.id))
 
-        if(editedSpot) {
-            history.push(`/spots/${editedSpot?.id}`)
+        if(editedSpot){
+            history.push(`/spots/${newSpot.id}`)
         }
-
     }
 
     useEffect(() => {
@@ -62,6 +63,7 @@ const EditSpot = () => {
 
         setErrorValidations(errors)
     }, [name, address, city, state, country, latitude, longitude, price, description])
+
 
     return (
         <div id="form-container">
@@ -121,7 +123,7 @@ const EditSpot = () => {
                     </label>
                     <label>Latitude:
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Latitude"
                             value={latitude}
                             onChange={e => setLatitude(e.target.value)}
@@ -129,7 +131,7 @@ const EditSpot = () => {
                     </label>
                     <label>Longitude:
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Longitude"
                             value={longitude}
                             onChange={e => setLongitude(e.target.value)}
@@ -137,20 +139,20 @@ const EditSpot = () => {
                     </label>
                     <label>Price:
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Cost per night"
                             value={price}
                             onChange={e => setPrice(e.target.value)}
                         />
                     </label>
-                    <label>Image:
+                    {/* <label>Image:
                         <input
                             type="text"
                             placeholder="Image url"
                             value={previewImage}
                             onChange={e => setPreviewImage(e.target.value)}
                         />
-                    </label>
+                    </label> */}
                     <label>Description:
                         <input
                             type="text"

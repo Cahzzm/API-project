@@ -5,8 +5,6 @@ const router = express.Router()
 const { Spot, Review, SpotImage, Sequelize, ReviewImage, Booking, User } = require('../../db/models')
 const { requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
-const spot = require('../../db/models/spot');
 
 // get all spots
 router.get('/', async (req, res, next) => {
@@ -245,47 +243,50 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
     if(!spot) {
         res.status(404)
-        res.json({
+        return res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
     }
 
-    if(
-        address === undefined || city === undefined || state === undefined ||
-        country === undefined || lat === undefined || lng === undefined ||
-        name === undefined || description === undefined || price === undefined
-        ) {
-        res.status(400)
-        res.json({
-            message: "Validation Error",
-            statusCode: 400,
-            errors: {
-                address: "Street address is required",
-                city: "City is required",
-                state: "State is required",
-                country: "Country is required",
-                lat: "Latitude is not valid",
-                lng: "Longitude is not valid",
-                name: "Name must be less than 50 characters",
-                description: "Description is required",
-                price: "Price per day is required"
-            }
-        })
+     else if(
+            address === undefined || city === undefined || state === undefined ||
+            country === undefined || lat === undefined || lng === undefined ||
+            name === undefined || description === undefined || price === undefined
+            ) {
+            res.status(400)
+            return res.json({
+                message: "Validation Error",
+                statusCode: 400,
+                errors: {
+                    address: "Street address is required",
+                    city: "City is required",
+                    state: "State is required",
+                    country: "Country is required",
+                    lat: "Latitude is not valid",
+                    lng: "Longitude is not valid",
+                    name: "Name must be less than 50 characters",
+                    description: "Description is required",
+                    price: "Price per day is required"
+                }
+            })
+        }
+
+        else {
+            if(address !== undefined) spot.address = address
+            if(city !== undefined) spot.city = city
+            if(state !== undefined) spot.state = state
+            if(country !== undefined) spot.country = country
+            if(lat !== undefined) spot.lat = lat
+            if(lng !== undefined) spot.lng = lng
+            if(name !== undefined) spot.name = name
+            if(description !== undefined) spot.description = description
+            if(price !== undefined) spot.price = price
+
+        await spot.save()
+        return res.json(spot)
     }
 
-    if(address !== undefined) spot.address = address
-    if(city !== undefined) spot.city = city
-    if(state !== undefined) spot.state = state
-    if(country !== undefined) spot.country = country
-    if(lat !== undefined) spot.lat = lat
-    if(lng !== undefined) spot.lng = lng
-    if(name !== undefined) spot.name = name
-    if(description !== undefined) spot.description = description
-    if(price !== undefined) spot.price = price
-
-    await spot.save()
-    res.json(spot)
 })
 
 // create a review for a spot

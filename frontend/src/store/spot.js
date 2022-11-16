@@ -67,9 +67,11 @@ export const editSpotThunk = (payload, spotId) => async dispatch => {
         body: JSON.stringify(payload)
     })
 
-    const spot = await response.json()
-    dispatch(addSpot(spot))
-    return spot
+    if(response.ok) {
+        const spot = await response.json()
+        dispatch(addSpot(spot))
+        return spot
+    }
 }
 
 export const deleteSpotThunk = (spotId) => async dispatch => {

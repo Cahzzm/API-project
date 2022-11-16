@@ -18,7 +18,7 @@ const CreateSpot = () => {
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
     const [price, setPrice] = useState(0)
-    const [previewImage, setPreviewImage] = useState("")
+    // const [previewImage, setPreviewImage] = useState("")
     const [description, setDescription] = useState("")
 
     const [errorValidations, setErrorValidations] = useState([])
@@ -35,6 +35,7 @@ const CreateSpot = () => {
             latitude,
             longitude,
             price,
+            // previewImage,
             description,
             ownerId: session.user.id,
         }
@@ -56,11 +57,11 @@ const CreateSpot = () => {
         if(!latitude || isNaN(latitude)) errors.push("Please provide a valid latitude")
         if(!longitude || isNaN(longitude)) errors.push("Please provide a valide longitude")
         if(price <= 0) errors.push("Please provid a price")
-        if (!previewImage?.includes("http" || 'https')) errors.push("Must provide a valid photo.")
+        // if (!previewImage?.includes("http" || 'https')) errors.push("Must provide a valid photo.")
         if(description?.length === 0) errors.push("Please provide a description")
 
         setErrorValidations(errors)
-    }, [name, address, city, state, country, latitude, longitude, price, previewImage, description])
+    }, [name, address, city, state, country, latitude, longitude, price, description])
 
     return (
         <div id="form-container">
@@ -142,14 +143,14 @@ const CreateSpot = () => {
                             onChange={e => setPrice(e.target.value)}
                         />
                     </label>
-                    <label>Image:
+                    {/* <label>Image:
                         <input
-                            type="text"
+                            type="string"
                             placeholder="Image url"
                             value={previewImage}
                             onChange={e => setPreviewImage(e.target.value)}
                         />
-                    </label>
+                    </label> */}
                     <label>Description:
                         <input
                             type="text"
