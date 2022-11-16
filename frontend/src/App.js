@@ -9,6 +9,7 @@ import Spots from "./components/Spots";
 import OneSpot from "./components/OneSpot";
 import CreateSpot from "./components/CreateSpot";
 import Footer from "./components/Footer";
+import EditSpot from "./components/EditSpot"
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <OneSpot />
+          </Route>
+          <Route exact path="/spots/:spotId/host">
+            <EditSpot />
           </Route>
         </Switch>
       )}

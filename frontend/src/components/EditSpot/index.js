@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { createSpotThunk } from "../../store/spot";
-import { states } from "../utils"
-import "./createspot.css"
+import { useHistory, useParams } from "react-router-dom";
+import { states } from '../utils.js'
+import { editSpotThunk } from "../../store/spot"
+import './editspot.css'
+import { Link } from "react-router-dom";
 
-const CreateSpot = () => {
+const EditSpot = () => {
     const history = useHistory()
     const dispatch = useDispatch()
     const session = useSelector(state => state.session)
-
-    const [name, setName] = useState("")
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [country, setCountry] = useState("")
-    const [latitude, setLatitude] = useState(0)
-    const [longitude, setLongitude] = useState(0)
-    const [price, setPrice] = useState(0)
-    const [previewImage, setPreviewImage] = useState("")
-    const [description, setDescription] = useState("")
-
+    const { spotId } = useParams()
+    const spotDetails = useSelector(state => state.spots[spotId])
+    const [name, setName] = useState(spotDetails?.name)
+    const [address, setAddress] = useState(spotDetails?.address)
+    const [city, setCity] = useState(spotDetails?.city)
+    const [state, setState] = useState(spotDetails?.state)
+    const [country, setCountry] = useState(spotDetails?.country)
+    const [latitude, setLatitude] = useState(spotDetails?.latitude)
+    const [longitude, setLongitude] = useState(spotDetails?.longitude)
+    const [price, setPrice] = useState(spotDetails?.price)
+    const [previewImage, setPreviewImage] = useState(spotDetails?.SpotImages[0].url)
+    const [description, setDescription] = useState(spotDetails?.description)
     const [errorValidations, setErrorValidations] = useState([])
 
     const handleSubmit = async (e) => {
@@ -35,13 +36,14 @@ const CreateSpot = () => {
             latitude,
             longitude,
             price,
+            image: spotDetails.SpotImages[0].url,
             description,
             ownerId: session.user.id,
         }
-        let createdSpot = await dispatch(createSpotThunk(newSpot))
+        let editedSpot = await dispatch(editSpotThunk(newSpot))
 
-        if(createdSpot) {
-            history.push(`/spots/${createdSpot?.id}`)
+        if(editedSpot) {
+            history.push(`/spots/${editedSpot?.id}`)
         }
 
     }
@@ -56,11 +58,10 @@ const CreateSpot = () => {
         if(!latitude || isNaN(latitude)) errors.push("Please provide a valid latitude")
         if(!longitude || isNaN(longitude)) errors.push("Please provide a valide longitude")
         if(price <= 0) errors.push("Please provid a price")
-        if (!previewImage?.includes("http" || 'https')) errors.push("Must provide a valid photo.")
         if(description?.length === 0) errors.push("Please provide a description")
 
         setErrorValidations(errors)
-    }, [name, address, city, state, country, latitude, longitude, price, previewImage, description])
+    }, [name, address, city, state, country, latitude, longitude, price, description])
 
     return (
         <div id="form-container">
@@ -163,7 +164,7 @@ const CreateSpot = () => {
                     disabled={errorValidations.length > 0}
                     type="submit"
                     >
-                        Create New Spot
+                        Submit Edit
                     </button>
                     <Link id='cancel-host-form' exact to="/">
                         Cancel
@@ -174,5 +175,4 @@ const CreateSpot = () => {
     )
 }
 
-
-export default CreateSpot
+export default EditSpot

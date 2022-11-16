@@ -60,12 +60,27 @@ export const createSpotThunk = (payload) => async dispatch => {
     }
 }
 
-export const deleteSpotThunk = (spotId) => async dispacth => {
-    const response = await csrfFetch(`/api/spots/${spotId}`)
+export const editSpotThunk = (payload, spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+
+    const spot = await response.json()
+    dispatch(addSpot(spot))
+    return spot
+}
+
+export const deleteSpotThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: "DELETE"
+    })
 
     if(response.ok) {
         const spot = await response.json()
-        dispacth(deleteSpot(spot))
+        dispatch(deleteSpot(spotId))
+        return spot
     }
 }
 

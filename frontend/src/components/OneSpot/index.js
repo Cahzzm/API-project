@@ -20,7 +20,7 @@ const OneSpot = () => {
     const deleteBtn = async (e) => {
         e.preventDefault()
 
-        dispatch(deleteSpotThunk(spotId))
+        await dispatch(deleteSpotThunk(spotId))
 
         history.push("/spots")
     }
