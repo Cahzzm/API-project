@@ -42,6 +42,10 @@ const Spots = () => {
                                     <div className="cost-per-night-all-spots">
                                         <h3 key={spot?.id}>${spot?.price} night</h3>
                                     </div>
+                                    <br />
+                                    <div>
+                                        <h3 key={spot?.id}><i class="fas fa-star">{spot?.avgRating} stars</i></h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>

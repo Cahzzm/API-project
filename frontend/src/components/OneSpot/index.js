@@ -1,18 +1,29 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { Link, useHistory, useParams } from "react-router-dom"
 import { getOneSpotThunk } from "../../store/spot"
 import SpotMap from "../SpotMap"
+import { deleteSpotThunk } from "../../store/spot"
 import './onespot.css'
 
 const OneSpot = () => {
     const { spotId } = useParams()
     const dispatch = useDispatch()
+    const sessionUser = useSelector(state => state?.session?.user)
     const spot = useSelector(state => state.spots[spotId])
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
     }, [spotId, dispatch])
+
+    const deleteBtn = async (e) => {
+        e.preventDefault()
+
+        dispatch(deleteSpotThunk(spotId))
+
+        history.push("/spots")
+    }
 
     if(!spot || !spot.SpotImages) return null
 
@@ -29,6 +40,14 @@ const OneSpot = () => {
             <div className="image-div-one-spot">
                 <img className="spot-image" src={spot?.SpotImages[0]?.url} alt="" />
                 <br />
+            </div>
+            <div className="edit-delete-div-one">
+                {sessionUser?.id === spot?.ownerId &&
+                <>
+                    <Link to={`/spots/${spotId}/host`}>Edit Spot</Link>
+                    <button id='delete-one-spot' onClick={deleteBtn}>Delete</button>
+                </>
+                }
             </div>
             <div className="host-one-spot">
                 <h2 className="h2-host-name">Hosted By: {spot?.Owner?.firstName} {spot?.Owner?.lastName}</h2>

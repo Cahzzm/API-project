@@ -476,6 +476,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     }
 })
 
+//delete a spot based on id
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const { spotId } = req.params
     const currentUser = req.user.id
