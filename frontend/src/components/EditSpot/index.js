@@ -17,8 +17,8 @@ const EditSpot = () => {
     const [city, setCity] = useState(spotDetails?.city)
     const [state, setState] = useState(spotDetails?.state)
     const [country, setCountry] = useState(spotDetails?.country)
-    const [lat, setLatitude] = useState(spotDetails?.latitude)
-    const [lng, setLongitude] = useState(spotDetails?.longitude)
+    const [lat, setLatitude] = useState(spotDetails?.lat)
+    const [lng, setLongitude] = useState(spotDetails?.lng)
     const [price, setPrice] = useState(spotDetails?.price)
     const [description, setDescription] = useState(spotDetails?.description)
     const [errorValidations, setErrorValidations] = useState([])
@@ -38,8 +38,7 @@ const EditSpot = () => {
             description,
             ownerId: session.user.id,
         }
-        console.log("THIS IS THE NEWSPOT", newSpot)
-        console.log(spotId)
+
         let editedSpot = await dispatch(editSpotThunk(newSpot, spotDetails.id))
 
         if(editedSpot){
