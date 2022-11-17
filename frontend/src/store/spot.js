@@ -1,9 +1,11 @@
+
 import { csrfFetch } from "./csrf"
 
 const LOAD = 'spots/LOAD'
 const LOAD_ONE = 'spots/LOAD_ONE'
 const ADD_SPOT = 'spots/ADD_SPOT'
 const DELETE = 'spots/DELETE'
+const ADD_IMAGE = 'spots/ADD_IMAGE'
 
 const loadSpots = list => ({
     type: LOAD,
@@ -23,6 +25,12 @@ const loadOneSpot = spot => ({
 const deleteSpot = spotId => ({
     type: DELETE,
     spotId
+})
+
+const addImage = (image, spot) => ({
+    type: ADD_IMAGE,
+    image,
+    spot
 })
 
 //------------THUNKS-----------//
@@ -45,7 +53,6 @@ export const getOneSpotThunk = (spotId) => async dispatch => {
     }
 }
 
-
 export const createSpotThunk = (payload) => async dispatch => {
     const response = await csrfFetch(`/api/spots`, {
         method: 'POST',
@@ -57,6 +64,20 @@ export const createSpotThunk = (payload) => async dispatch => {
         const newSpot = await response.json()
         dispatch(addSpot(newSpot))
         return newSpot
+    }
+}
+
+export const addSpotImageThunk = (payload, spot) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spot.id}/images`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+
+    if(response.ok) {
+        const newImage = await response.json()
+        dispatch(addImage(newImage, spot))
+        return newImage
     }
 }
 
@@ -131,6 +152,15 @@ const spotsReducer = (state = initialState, action) => {
                     }
                 }
             }
+        case ADD_IMAGE: {
+            return {
+                ...state,
+                [action.spot.id]: {
+                    ...action.spot,
+                    previewImage: action.image.url
+                }
+            }
+        }
         case DELETE: {
          const newState = {
             ...state

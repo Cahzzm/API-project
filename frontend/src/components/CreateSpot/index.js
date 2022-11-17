@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { createSpotThunk } from "../../store/spot";
+import { addSpotImageThunk, createSpotThunk } from "../../store/spot";
 import { states } from "../utils"
 import "./createspot.css"
 
@@ -18,9 +18,8 @@ const CreateSpot = () => {
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
     const [price, setPrice] = useState(0)
-    // const [previewImage, setPreviewImage] = useState("")
+    const [imageUrl, setImageUrl] = useState("")
     const [description, setDescription] = useState("")
-
     const [errorValidations, setErrorValidations] = useState([])
 
     const handleSubmit = async (e) => {
@@ -35,13 +34,20 @@ const CreateSpot = () => {
             latitude,
             longitude,
             price,
-            // previewImage,
             description,
             ownerId: session.user.id,
         }
         let createdSpot = await dispatch(createSpotThunk(newSpot))
 
-        if(createdSpot) {
+        if(createdSpot && imageUrl) {
+
+            const image = {
+                url: imageUrl,
+                preview: true
+            }
+
+            await dispatch(addSpotImageThunk(image, createdSpot))
+
             history.push(`/spots/${createdSpot?.id}`)
         }
 
@@ -57,7 +63,6 @@ const CreateSpot = () => {
         if(!latitude || isNaN(latitude)) errors.push("Please provide a valid latitude")
         if(!longitude || isNaN(longitude)) errors.push("Please provide a valide longitude")
         if(price <= 0) errors.push("Please provid a price")
-        // if (!previewImage?.includes("http" || 'https')) errors.push("Must provide a valid photo.")
         if(description?.length === 0) errors.push("Please provide a description")
 
         setErrorValidations(errors)
@@ -143,14 +148,14 @@ const CreateSpot = () => {
                             onChange={e => setPrice(e.target.value)}
                         />
                     </label>
-                    {/* <label>Image:
+                    <label>Image:
                         <input
-                            type="string"
+                            type="text"
                             placeholder="Image url"
-                            value={previewImage}
-                            onChange={e => setPreviewImage(e.target.value)}
+                            value={imageUrl}
+                            onChange={e => setImageUrl(e.target.value)}
                         />
-                    </label> */}
+                    </label>
                     <label>Description:
                         <input
                             type="text"

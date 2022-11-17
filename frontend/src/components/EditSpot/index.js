@@ -36,7 +36,6 @@ const EditSpot = () => {
             lat,
             lng,
             price,
-            // image: spotDetails?.SpotImages[0]?.url,
             description,
             ownerId: session.user.id,
         }
