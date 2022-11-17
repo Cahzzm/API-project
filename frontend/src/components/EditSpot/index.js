@@ -17,8 +17,8 @@ const EditSpot = () => {
     const [city, setCity] = useState(spotDetails?.city)
     const [state, setState] = useState(spotDetails?.state)
     const [country, setCountry] = useState(spotDetails?.country)
-    const [latitude, setLatitude] = useState(spotDetails?.latitude)
-    const [longitude, setLongitude] = useState(spotDetails?.longitude)
+    const [lat, setLatitude] = useState(spotDetails?.latitude)
+    const [lng, setLongitude] = useState(spotDetails?.longitude)
     const [price, setPrice] = useState(spotDetails?.price)
     // const [previewImage, setPreviewImage] = useState(spotDetails?.SpotImages[0]?.url)
     const [description, setDescription] = useState(spotDetails?.description)
@@ -33,8 +33,8 @@ const EditSpot = () => {
             city,
             state,
             country,
-            latitude,
-            longitude,
+            lat,
+            lng,
             price,
             // image: spotDetails?.SpotImages[0]?.url,
             description,
@@ -45,7 +45,7 @@ const EditSpot = () => {
         let editedSpot = await dispatch(editSpotThunk(newSpot, spotDetails.id))
 
         if(editedSpot){
-            history.push(`/spots/${newSpot.id}`)
+            history.push(`/spots/${spotId}`)
         }
     }
 
@@ -56,13 +56,13 @@ const EditSpot = () => {
         if(city?.length === 0) errors.push("Please provide a city")
         if(state?.length === 0) errors.push("Please provide a state")
         if(country?.length === 0) errors.push("Please provide a country")
-        if(!latitude || isNaN(latitude)) errors.push("Please provide a valid latitude")
-        if(!longitude || isNaN(longitude)) errors.push("Please provide a valide longitude")
+        if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
+        if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
         if(price <= 0) errors.push("Please provid a price")
         if(description?.length === 0) errors.push("Please provide a description")
 
         setErrorValidations(errors)
-    }, [name, address, city, state, country, latitude, longitude, price, description])
+    }, [name, address, city, state, country, lat, lng, price, description])
 
 
     return (
@@ -125,7 +125,7 @@ const EditSpot = () => {
                         <input
                             type="number"
                             placeholder="Latitude"
-                            value={latitude}
+                            value={lat}
                             onChange={e => setLatitude(e.target.value)}
                         />
                     </label>
@@ -133,7 +133,7 @@ const EditSpot = () => {
                         <input
                             type="number"
                             placeholder="Longitude"
-                            value={longitude}
+                            value={lng}
                             onChange={e => setLongitude(e.target.value)}
                         />
                     </label>
