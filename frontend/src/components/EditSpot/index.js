@@ -20,7 +20,6 @@ const EditSpot = () => {
     const [lat, setLatitude] = useState(spotDetails?.latitude)
     const [lng, setLongitude] = useState(spotDetails?.longitude)
     const [price, setPrice] = useState(spotDetails?.price)
-    // const [previewImage, setPreviewImage] = useState(spotDetails?.SpotImages[0]?.url)
     const [description, setDescription] = useState(spotDetails?.description)
     const [errorValidations, setErrorValidations] = useState([])
 
@@ -144,14 +143,6 @@ const EditSpot = () => {
                             onChange={e => setPrice(e.target.value)}
                         />
                     </label>
-                    {/* <label>Image:
-                        <input
-                            type="text"
-                            placeholder="Image url"
-                            value={previewImage}
-                            onChange={e => setPreviewImage(e.target.value)}
-                        />
-                    </label> */}
                     <label>Description:
                         <input
                             type="text"

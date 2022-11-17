@@ -15,8 +15,8 @@ const CreateSpot = () => {
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
-    const [latitude, setLatitude] = useState(0)
-    const [longitude, setLongitude] = useState(0)
+    const [lat, setLatitude] = useState(0)
+    const [lng, setLongitude] = useState(0)
     const [price, setPrice] = useState(0)
     const [imageUrl, setImageUrl] = useState("")
     const [description, setDescription] = useState("")
@@ -31,8 +31,8 @@ const CreateSpot = () => {
             city,
             state,
             country,
-            latitude,
-            longitude,
+            lat,
+            lng,
             price,
             description,
             ownerId: session.user.id,
@@ -50,7 +50,6 @@ const CreateSpot = () => {
 
             history.push(`/spots/${createdSpot?.id}`)
         }
-
     }
 
     useEffect(() => {
@@ -60,13 +59,13 @@ const CreateSpot = () => {
         if(city?.length === 0) errors.push("Please provide a city")
         if(state?.length === 0) errors.push("Please provide a state")
         if(country?.length === 0) errors.push("Please provide a country")
-        if(!latitude || isNaN(latitude)) errors.push("Please provide a valid latitude")
-        if(!longitude || isNaN(longitude)) errors.push("Please provide a valide longitude")
+        if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
+        if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
         if(price <= 0) errors.push("Please provid a price")
         if(description?.length === 0) errors.push("Please provide a description")
 
         setErrorValidations(errors)
-    }, [name, address, city, state, country, latitude, longitude, price, description])
+    }, [name, address, city, state, country, lat, lng, price, description])
 
     return (
         <div id="form-container">
@@ -128,7 +127,7 @@ const CreateSpot = () => {
                         <input
                             type="text"
                             placeholder="Latitude"
-                            value={latitude}
+                            value={lat}
                             onChange={e => setLatitude(e.target.value)}
                         />
                     </label>
@@ -136,7 +135,7 @@ const CreateSpot = () => {
                         <input
                             type="text"
                             placeholder="Longitude"
-                            value={longitude}
+                            value={lng}
                             onChange={e => setLongitude(e.target.value)}
                         />
                     </label>
