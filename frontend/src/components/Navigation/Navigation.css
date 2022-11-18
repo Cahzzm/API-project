@@ -13,6 +13,11 @@
     width: 100%;
 }
 
+.airbnb-logo {
+    width: 45px;
+    height: 45px;
+}
+
 a {
     text-decoration: none;
     color: black;

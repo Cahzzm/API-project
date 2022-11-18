@@ -33,7 +33,7 @@ function Navigation({ isLoaded }){
     <ul>
       <li>
         <Demo />
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/"><img className = "airbnb-logo" src='https://img.icons8.com/color/2x/airbnb.png' alt=''></img></NavLink>
         {isLoaded && (
         <ProfileButton user={sessionUser}
         setLogin={setLogin}

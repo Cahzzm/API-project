@@ -1,0 +1,42 @@
+.review-main-container {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    margin-left: 23%;
+    overflow: hidden;
+}
+
+.each-review-user {
+    /* border: 2px solid black; */
+    align-items: center;
+    overflow: hidden;
+}
+
+.each-review-user-container {
+    border: 1px solid red;
+}
+
+#input-for-review {
+    border: 1px solid red;
+    overflow: hidden;
+    height: 40px;
+    width: 50%;
+}
+
+.line-one-spot {
+    border: 1px solid rgba(10,10,10, 0.2);
+    width: 38%;
+    margin-left: 22%;
+}
+
+.actual-reviews {
+    border: 1px solid blue;
+    overflow: hidden;
+
+}
+
+.actual-reviews::-webkit-scrollbar {
+    width: 0;
+    display: none;
+}

@@ -5,16 +5,20 @@ import { getOneSpotThunk } from "../../store/spot"
 import SpotMap from "../SpotMap"
 import { deleteSpotThunk } from "../../store/spot"
 import './onespot.css'
+import Reviews from "../Reviews"
+import { getAllReviewsThunk } from "../../store/review"
 
 const OneSpot = () => {
     const { spotId } = useParams()
     const dispatch = useDispatch()
+    const reviews = useSelector(state => state?.reviews?.list?.Reviews)
     const sessionUser = useSelector(state => state?.session?.user)
     const spot = useSelector(state => state.spots[spotId])
     const history = useHistory()
 
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
+        dispatch(getAllReviewsThunk(spotId))
     }, [spotId, dispatch])
 
     const deleteBtn = async (e) => {
@@ -24,6 +28,15 @@ const OneSpot = () => {
 
         history.push("/spots")
     }
+
+    // function avgStars(){
+    //     let sum = 0
+    //     for(let i = 0; i < reviews?.length; i++){
+    //         let num = reviews[i]?.rating
+    //         sum += num;
+    //     }
+    //     return `${Number.parseFloat(sum / reviews?.length).toFixed(1)}`
+    // }
 
     if(!spot || !spot.SpotImages) return null
 
@@ -64,6 +77,11 @@ const OneSpot = () => {
             <div className="description-one-spot">
                 <p>{spot?.description}</p>
             </div>
+            <div className="line-one-spot"></div>
+            <div className="heading-for-reviews-s">
+                <h2><i class="fas fa-star"></i> {spot?.avgRating} stars | {reviews?.length} {reviews?.length === 1 ? 'Review' : 'Reviews'}</h2>
+            </div>
+                <Reviews spotId={spotId} sessionUser={sessionUser} />
             <div className="line-one-spot"></div>
             <div>
                 <SpotMap spot={spot}/>

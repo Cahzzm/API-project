@@ -10,6 +10,7 @@ import OneSpot from "./components/OneSpot";
 import CreateSpot from "./components/CreateSpot";
 import Footer from "./components/Footer";
 import EditSpot from "./components/EditSpot"
+import './index.css'
 
 function App() {
   const dispatch = useDispatch();
