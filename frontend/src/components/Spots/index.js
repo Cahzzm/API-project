@@ -16,39 +16,36 @@ const Spots = () => {
 
     return (
         <div className="main-container">
-            <div className="map">
-                <img id="map-image" src="https://loveincorporated.blob.core.windows.net/contentimages/gallery/9f3fe8a1-7dd2-437f-a438-9471414452ea-worlds-most-incredible-homes-wave-house.jpg" alt="" />
-            </div>
             <div className="content-container">
                 {allSpots.map(spot => (
-                    <div className="spots-container">
-                        <div className="image-container">
-                            <img id="spot-image" key={spot?.id} alt="" src={spot?.previewImage}></img>
-                        </div>
-                        <div className="info">
-                            <div className="left-info-all">
-                                <Link to={`/spots/${spot?.id}`}>
-                                    <h2 id="all-spots-title" key={spot?.id}>{spot?.name}</h2>
-                                </Link>
-                                <div className="line-div"></div>
-                                <div className="guest-bed-bath-container">
-                                    <div className="style-b-b-g">
-                                        <p key={spot?.id}>{spot?.city}, {spot?.state}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="right-info-all">
-                                <div className="outer-div-csp-all-spots">
-                                    <div className="cost-per-night-all-spots">
-                                        <h3 key={spot?.id}>${spot?.price} night</h3>
-                                    </div>
-                                    <br />
-                                    <div>
-                                        <h3 key={spot?.id}><i class="fas fa-star">{spot?.avgRating} stars</i></h3>
-                                    </div>
-                                </div>
+                    <div className="spots-container-main">
+                        <div className="spots-container">
+                            <div className="image-container">
+                                <img id="spot-image" key={spot?.id} alt="" src={spot?.previewImage}></img>
                             </div>
                         </div>
+                                <div className="">
+                                    <Link to={`/spots/${spot?.id}`}>
+                                        <h2 id="all-spots-name" key={spot?.id}>{spot?.name}</h2>
+                                    </Link>
+                                    <div className="line-div"></div>
+                                    <div className="">
+                                        <div className="">
+                                            <p key={spot?.id}>{spot?.city}, {spot?.state}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="bottom-info-all">
+                                    <div className="outer-div-csp-all-spots">
+                                        <div className="cost-per-night-all-spots">
+                                            <h3 key={spot?.id}>${spot?.price} night</h3>
+                                        </div>
+                                        <br />
+                                        <div>
+                                            <h3 key={spot?.id}><i class="fas fa-star">{spot?.avgRating} stars</i></h3>
+                                        </div>
+                                    </div>
+                                </div>
                     </div>
                 ))}
             </div>
