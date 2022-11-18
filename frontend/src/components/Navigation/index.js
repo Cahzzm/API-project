@@ -50,14 +50,14 @@ function Navigation({ isLoaded }){
               setShowModal={setShowModal}
               />
               )}
-              <Demo />
             {showModal && <Modal onClose={() => {
-            console.log("running close modal")
-            setShowModal(false)
+              console.log("running close modal")
+              setShowModal(false)
             }}>
             {login ? <LoginForm setShowModal={setShowModal}/> : <SignupFormPage setShowModal={setShowModal}/>}
             </Modal>
           }
+          <Demo />
           </div>
         </div>
         <div className='bottom-navbar'>
