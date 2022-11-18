@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import Home from "./components/Home";
 import Spots from "./components/Spots";
 import OneSpot from "./components/OneSpot";
 import CreateSpot from "./components/CreateSpot";
@@ -25,9 +24,6 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/spots">
             <Spots />
           </Route>
           <Route exact path="/spots/host">

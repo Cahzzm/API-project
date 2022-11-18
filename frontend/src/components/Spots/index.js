@@ -17,37 +17,26 @@ const Spots = () => {
     return (
         <div className="main-container">
             <div className="content-container">
-                {allSpots.map(spot => (
-                    <div className="spots-container-main">
-                        <div className="spots-container">
+                <div className="spots-container">
+                    {allSpots.map(spot => (
+                        <div className="spot">
                             <div className="image-container">
                                 <img id="spot-image" key={spot?.id} alt="" src={spot?.previewImage}></img>
                             </div>
+
+                            <div className="spot-info">
+                                <div className="title-container">
+                                <Link to={`/spots/${spot?.id}`}>
+                                    <span id="all-spots-name" key={spot?.id}>{spot?.name}</span>
+                                </Link>
+                                <span id="spot-rating" key={spot?.id}><i class="fas fa-star">{spot?.avgRating}</i></span>
+                                </div>
+                                <p key={spot?.id}>{spot?.city}, {spot?.state}</p>
+                                <p key={spot?.id}>${spot?.price} night</p>
+                            </div>
                         </div>
-                                <div className="">
-                                    <Link to={`/spots/${spot?.id}`}>
-                                        <h2 id="all-spots-name" key={spot?.id}>{spot?.name}</h2>
-                                    </Link>
-                                    <div className="line-div"></div>
-                                    <div className="">
-                                        <div className="">
-                                            <p key={spot?.id}>{spot?.city}, {spot?.state}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="bottom-info-all">
-                                    <div className="outer-div-csp-all-spots">
-                                        <div className="cost-per-night-all-spots">
-                                            <h3 key={spot?.id}>${spot?.price} night</h3>
-                                        </div>
-                                        <br />
-                                        <div>
-                                            <h3 key={spot?.id}><i class="fas fa-star">{spot?.avgRating} stars</i></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     )
