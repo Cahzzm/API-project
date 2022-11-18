@@ -48,7 +48,7 @@ const CreateSpot = () => {
 
             await dispatch(addSpotImageThunk(image, createdSpot))
 
-            history.push(`/spots/${createdSpot?.id}`)
+            history.push(`/spots`)
         }
     }
 
@@ -149,7 +149,7 @@ const CreateSpot = () => {
                     </label>
                     <label>Image:
                         <input
-                            type="text"
+                            type="url"
                             placeholder="Image url"
                             value={imageUrl}
                             onChange={e => setImageUrl(e.target.value)}

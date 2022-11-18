@@ -26,7 +26,7 @@ const OneSpot = () => {
 
         await dispatch(deleteSpotThunk(spotId))
 
-        history.push("/spots")
+        history.push("/")
     }
 
     // function avgStars(){
