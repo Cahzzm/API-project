@@ -48,7 +48,7 @@ const CreateSpot = () => {
 
             await dispatch(addSpotImageThunk(image, createdSpot))
 
-            history.push(`/spots`)
+            history.push(`/spots/${createdSpot?.id}`)
         }
     }
 
