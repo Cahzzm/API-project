@@ -109,7 +109,8 @@ export const deleteSpotThunk = (spotId) => async dispatch => {
 
 //---------REDUCER------------//
 const initialState = {
-    list: []
+    allSpots: {},
+    singleSpot: {}
  }
 
 const spotsReducer = (state = initialState, action) => {
@@ -120,36 +121,20 @@ const spotsReducer = (state = initialState, action) => {
                 allSpotsState[spot.id] = spot
             ))
             return {
-                ...allSpotsState,
-                ...state.list,
-                list: action.list
+                ...state,
+                allSpots: allSpotsState,
+                singleSpot: {}
             }
         }
-        case LOAD_ONE:{
-            const newState = {
+        case LOAD_ONE:
+            return {
+                ...state,
+                singleSpot: action.spot
+            }
+        case ADD_SPOT:
+            return {
                 ...state,
                 [action.spot.id]: action.spot
-            }
-            return newState;
-        };
-        case ADD_SPOT:{
-                if(!state[action.spot.id]) {
-                    const newSpotState = {
-                        ...state,
-                        [action.spot.id]: action.spot
-                    }
-                    const spotsList = newSpotState.list.map(id => newSpotState[id])
-                    spotsList.push(action.spot)
-                    newSpotState.list = action.list
-                    return newSpotState
-                }
-                return {
-                    ...state,
-                    [action.spot.id]: {
-                        ...state[action.spot.id],
-                        ...action.spot
-                    }
-                }
             }
         case ADD_IMAGE: {
             return {
@@ -164,7 +149,7 @@ const spotsReducer = (state = initialState, action) => {
          const newState = {
             ...state
         }
-         delete newState[action.spotId]
+         delete newState.allSpots[action.spotId]
          return newState
         }
         default:

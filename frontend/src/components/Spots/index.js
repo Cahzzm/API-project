@@ -6,13 +6,14 @@ import "./spots.css"
 
 const Spots = () => {
     const dispatch = useDispatch()
-    const allSpots = useSelector(state => state?.spots?.list)
+    const spots = useSelector(state => state.spots.allSpots)
+    const allSpots = Object.values(spots)
 
     useEffect(() => {
         dispatch(getSpotsThunk())
     }, [dispatch])
 
-    if(!allSpots) return null
+    if(!allSpots.length) return null
 
     return (
         <div className="main-container">
@@ -21,18 +22,18 @@ const Spots = () => {
                     {allSpots.map(spot => (
                         <div className="spot">
                             <div className="image-container">
-                                <img id="spot-image" key={spot?.id} alt="" src={spot?.previewImage}></img>
+                                <img id="spot-image" key={spot.id} alt="" src={spot.previewImage}></img>
                             </div>
 
                             <div className="spot-info">
                                 <div className="title-container">
-                                <Link to={`/spots/${spot?.id}`}>
-                                    <span id="all-spots-name" key={spot?.id}>{spot?.name}</span>
+                                <Link to={`/spots/${spot.id}`}>
+                                    <span id="all-spots-name" key={spot.id}>{spot.name}</span>
                                 </Link>
-                                <span id="spot-rating" key={spot?.id}><i class="fas fa-star">{spot?.avgRating}</i></span>
+                                <span id="spot-rating" key={spot.id}><i class="fas fa-star">{spot.avgRating}</i></span>
                                 </div>
-                                <p key={spot?.id}>{spot?.city}, {spot?.state}</p>
-                                <p key={spot?.id}>${spot?.price} night</p>
+                                <p key={spot.id}>{spot.city}, {spot.state}</p>
+                                <p key={spot.id}>${spot.price} night</p>
                             </div>
                         </div>
                     ))}

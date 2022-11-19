@@ -12,6 +12,14 @@
     overflow: hidden;
 }
 
+h2 {
+    font-weight: 500;
+}
+
+#review-user-name {
+    font-weight: 600;
+}
+
 /* .each-review-user-container {
     /* border: 1px solid red; */
 

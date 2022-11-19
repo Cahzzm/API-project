@@ -8,7 +8,7 @@ import "./createspot.css"
 const CreateSpot = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const session = useSelector(state => state.session)
+    const sessionUser = useSelector(state => state?.session?.user)
 
     const [name, setName] = useState("")
     const [address, setAddress] = useState("")
@@ -35,7 +35,7 @@ const CreateSpot = () => {
             lng,
             price,
             description,
-            ownerId: session.user.id,
+            ownerId: sessionUser,
         }
         let createdSpot = await dispatch(createSpotThunk(newSpot))
 

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import './LoginFormModal.css'
 
 function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ function LoginForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="modal-form" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -47,7 +48,10 @@ function LoginForm({ setShowModal }) {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button id="login-button-modal" type="submit">Log In</button>
+      {/* <div className="or-line-seperate">
+        or
+      </div> */}
     </form>
   );
 }

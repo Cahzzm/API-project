@@ -41,9 +41,13 @@ function Navigation({ isLoaded }){
             </NavLink>
         </div>
         <div className='right-navbar'>
-          <NavLink to="/spots/host">
-            <button id='host-home-button'>Nitrogennbnb your home</button>
-          </NavLink>
+          {sessionUser &&
+            (
+            <NavLink to="/spots/host">
+              <button id='host-home-button'>Nitrogennbnb your home</button>
+            </NavLink>
+            )
+          }
             {isLoaded && (
               <ProfileButton user={sessionUser}
               setLogin={setLogin}

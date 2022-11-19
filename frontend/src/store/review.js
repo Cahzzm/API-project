@@ -10,11 +10,6 @@ const loadAll = reviews => ({
     list: reviews
 })
 
-const addReview = review => ({
-    type: ADD_ONE,
-    review
-})
-
 const deleteReview = (reviewId, spotId) => ({
     type: DELETE,
     reviewId,
@@ -32,17 +27,15 @@ export const getAllReviewsThunk = spotId => async dispatch => {
 }
 
 export const addReviewThunk = (payload, spotId) => async dispatch => {
-    console.log("------------------------", payload)
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
-    console.log("==================", response)
 
     if(response.ok) {
         const review = await response.json()
-        await dispatch(addReview(review))
+        await dispatch(getAllReviewsThunk(spotId))
         return review
     }
 }
@@ -53,16 +46,17 @@ export const deleteReviewThunk = (reviewId, spotId) => async dispatch => {
     })
 
     if(response.ok) {
-        const {id: deletedItemId} = await response.json()
-        await dispatch(deleteReview(deletedItemId, spotId))
-        return deletedItemId
+        await dispatch(deleteReview(reviewId, spotId))
+    } else {
+        const {message} = await response.json()
+        return message
     }
+
+
 }
 
 //-----------REDUCER--------------//
-const initialState = {
-    list:[]
-}
+const initialState = {}
 
 const reviewsReducer = (state= initialState, action) => {
     switch(action.type) {
@@ -71,32 +65,14 @@ const reviewsReducer = (state= initialState, action) => {
             action.list.Reviews.forEach(review => {
                 allReviews[review.id] = review
             });
-            return {
-                ...allReviews,
-                ...state.list,
-                list: action.list
-            }
+            return allReviews
         }
-        case ADD_ONE: {
-            if(!state[action.review.id]) {
-                const newState = {
-                    ...state,
-                    [action.review.id]: action.review
-                }
-                const reviewList = newState.list.Reviews.map(id => newState[id])
-                reviewList.push(action.review)
-                newState.list = action.list
-                // console.log(newState)
-                return newState
-            }
+        case ADD_ONE:
             return {
                 ...state,
-                [action.review.id]: {
-                    ...state[action.review.id],
-                    ...action.review
-                }
+                [action.review.id]: action.review
             }
-        }
+
         case DELETE: {
             const newState = {
                 ...state

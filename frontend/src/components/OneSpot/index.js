@@ -10,12 +10,15 @@ import { getAllReviewsThunk } from "../../store/review"
 
 const OneSpot = () => {
     const { spotId } = useParams()
+    console.log("this is the spot id", spotId)
     const dispatch = useDispatch()
-    const reviews = useSelector(state => state?.reviews?.list?.Reviews)
+    const reviewsObject = useSelector(state => state.reviews)
+    const reviews = Object.values(reviewsObject)
     const sessionUser = useSelector(state => state?.session?.user)
-    const spot = useSelector(state => state.spots[spotId])
+    const spot = useSelector(state => state.spots.singleSpot)
     const history = useHistory()
 
+    console.log("=================this is the spot================", spot)
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
         dispatch(getAllReviewsThunk(spotId))
@@ -38,24 +41,24 @@ const OneSpot = () => {
     //     return `${Number.parseFloat(sum / reviews?.length).toFixed(1)}`
     // }
 
-    if(!spot || !spot.SpotImages) return null
+    if(!spot.id) return null
 
     return (
         <div className="spot-detail">
             <div className="one-spot-title">
-                <h1 id="title-one-spot">{spot?.name}</h1>
+                <h1 id="title-one-spot">{spot.name}</h1>
             </div>
             <div className="address-div-one-spot">
-                <p id="city-one-spot">{`${spot?.address}`}</p>
-                <p id="city-one-spot">{` ${spot?.city}, ${spot?.state}`}</p>
-                <p id="country-one-spot">{` ${spot?.country}`}</p>
+                <p id="city-one-spot">{`${spot.address}`}</p>
+                <p id="city-one-spot">{` ${spot.city}, ${spot.state}`}</p>
+                <p id="country-one-spot">{` ${spot.country}`}</p>
             </div>
             <div className="image-div-one-spot">
-                <img className="spot-image" src={spot?.SpotImages[0]?.url} alt="" />
+                <img className="spot-image" src={spot.SpotImages[0].url} alt="" />
                 <br />
             </div>
             <div className="edit-delete-div-one">
-                {sessionUser?.id === spot?.ownerId &&
+                {sessionUser?.id === spot.ownerId &&
                 <>
                     <Link to={`/spots/${spotId}/host`}>Edit Spot</Link>
                     <button id='delete-one-spot' onClick={deleteBtn}>Delete</button>
@@ -63,7 +66,7 @@ const OneSpot = () => {
                 }
             </div>
             <div className="host-one-spot">
-                <h2 className="h2-host-name">Hosted By: {spot?.Owner?.firstName} {spot?.Owner?.lastName}</h2>
+                <h2 className="h2-host-name">Hosted By: {spot.Owner.firstName} {spot.Owner.lastName}</h2>
             </div>
             <div className="line-one-spot"></div>
             <h3 id='entire-home'><i class="fas fa-home"></i> Entire Home</h3>
@@ -75,11 +78,11 @@ const OneSpot = () => {
 
             <div className="line-one-spot"></div>
             <div className="description-one-spot">
-                <p>{spot?.description}</p>
+                <p>{spot.description}</p>
             </div>
             <div className="line-one-spot"></div>
             <div className="heading-for-reviews-s">
-                <h2><i class="fas fa-star"></i> {spot?.avgRating} stars | {reviews?.length} {reviews?.length === 1 ? 'Review' : 'Reviews'}</h2>
+                <h2><i class="fas fa-star"></i> {spot.avgRating} stars · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}</h2>
             </div>
                 <Reviews spotId={spotId} sessionUser={sessionUser} />
             <div className="line-one-spot"></div>

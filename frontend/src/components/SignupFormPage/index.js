@@ -33,7 +33,7 @@ function SignupFormPage({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="signup-form-modal" onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
@@ -91,7 +91,7 @@ function SignupFormPage({ setShowModal }) {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button id="signup-button-modal" type="submit">Sign Up</button>
     </form>
   );
 }
