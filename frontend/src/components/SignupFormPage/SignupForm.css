@@ -1,16 +1,18 @@
 #signup-button-modal {
     border: none;
+    color: white;
     font-weight: 550;
-    background-color: rgba(255, 255, 255, 0.123);
-    margin-right: 10px;
+    background-color: #ff385c;
     height: 30px;
     border-radius: 8px;
     margin-bottom: 10px;
+    margin: 10px;
 }
 
 #signup-button-modal:hover {
-    background-color: rgba(224, 224, 224, 0.233);
+    /* background-color: #e08394; */
     cursor: pointer;
+    box-shadow: 2px, 2px, 2px, 2px;
 }
 
 .signup-form-modal {

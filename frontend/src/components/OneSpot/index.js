@@ -45,13 +45,16 @@ const OneSpot = () => {
 
     return (
         <div className="spot-detail">
-            <div className="one-spot-title">
+            <div className="one-spot-info">
                 <h1 id="title-one-spot">{spot.name}</h1>
             </div>
             <div className="address-div-one-spot">
-                <p id="city-one-spot">{`${spot.address}`}</p>
-                <p id="city-one-spot">{` ${spot.city}, ${spot.state}`}</p>
-                <p id="country-one-spot">{` ${spot.country}`}</p>
+                <span id="rating-above-picture"><i class="fas fa-star"></i> {spot.avgRating} · {reviews.length} reviews</span>
+                <span id="address-one-spot">
+                    {` ${spot.address} `}
+                    {` ${spot.city}, ${spot.state}, `}
+                    {` ${spot.country}`}
+                </span>
             </div>
             <div className="image-div-one-spot">
                 <img className="spot-image" src={spot.SpotImages[0].url} alt="" />

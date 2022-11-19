@@ -37,6 +37,9 @@ export const addReviewThunk = (payload, spotId) => async dispatch => {
         const review = await response.json()
         await dispatch(getAllReviewsThunk(spotId))
         return review
+    } else {
+        const { message } = await response.json()
+        return message
     }
 }
 

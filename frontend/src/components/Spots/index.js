@@ -32,8 +32,8 @@ const Spots = () => {
                                 </Link>
                                 <span id="spot-rating" key={spot.id}><i class="fas fa-star">{spot.avgRating}</i></span>
                                 </div>
-                                <p key={spot.id}>{spot.city}, {spot.state}</p>
-                                <p key={spot.id}>${spot.price} night</p>
+                                <p id="address-for-spot" key={spot.id}>{spot.city}, {spot.state}</p>
+                                <p id="price-per-night"key={spot.id}>${spot.price} night</p>
                             </div>
                         </div>
                     ))}

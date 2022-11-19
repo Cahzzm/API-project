@@ -15,8 +15,8 @@ const CreateSpot = () => {
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
-    const [lat, setLatitude] = useState(0)
-    const [lng, setLongitude] = useState(0)
+    // const [lat, setLatitude] = useState(0)
+    // const [lng, setLongitude] = useState(0)
     const [price, setPrice] = useState(0)
     const [imageUrl, setImageUrl] = useState("")
     const [description, setDescription] = useState("")
@@ -31,8 +31,6 @@ const CreateSpot = () => {
             city,
             state,
             country,
-            lat,
-            lng,
             price,
             description,
             ownerId: sessionUser,
@@ -59,13 +57,13 @@ const CreateSpot = () => {
         if(city?.length === 0) errors.push("Please provide a city")
         if(state?.length === 0) errors.push("Please provide a state")
         if(country?.length === 0) errors.push("Please provide a country")
-        if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
-        if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
+        // if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
+        // if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
         if(price <= 0) errors.push("Please provid a price")
         if(description?.length === 0) errors.push("Please provide a description")
 
         setErrorValidations(errors)
-    }, [name, address, city, state, country, lat, lng, price, description])
+    }, [name, address, city, state, country, price, description])
 
     return (
         <div id="form-container">
@@ -123,7 +121,7 @@ const CreateSpot = () => {
                             onChange={e => setCountry(e.target.value)}
                         />
                     </label>
-                    <label>Latitude:
+                    {/* <label>Latitude:
                         <input
                             type="text"
                             placeholder="Latitude"
@@ -138,7 +136,7 @@ const CreateSpot = () => {
                             value={lng}
                             onChange={e => setLongitude(e.target.value)}
                         />
-                    </label>
+                    </label> */}
                     <label>Price:
                         <input
                             type="text"

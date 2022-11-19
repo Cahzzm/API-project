@@ -65,7 +65,7 @@ const Reviews = ({spotId, sessionUser}) => {
                     {spot?.ownerId !== sessionUser?.id &&
                         <>
                             <h3>Leave a Review</h3>
-                            <div>
+                            <div className="star-rating">
                                 <input
                                 id="input-for-rating"
                                 type="number"
@@ -74,9 +74,12 @@ const Reviews = ({spotId, sessionUser}) => {
                                 >
 
                                 </input>
+                            </div>
+                            <div className="review-body">
                                 <input
                                     id="input-for-review"
                                     type="text"
+                                    placeholder="Leave a review"
                                     value={body}
                                     onChange={e => setBody(e.target.value)}
                                 />
