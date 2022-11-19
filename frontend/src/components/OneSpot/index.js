@@ -10,7 +10,6 @@ import { getAllReviewsThunk } from "../../store/review"
 
 const OneSpot = () => {
     const { spotId } = useParams()
-    console.log("this is the spot id", spotId)
     const dispatch = useDispatch()
     const reviewsObject = useSelector(state => state.reviews)
     const reviews = Object.values(reviewsObject)
@@ -18,11 +17,10 @@ const OneSpot = () => {
     const spot = useSelector(state => state.spots.singleSpot)
     const history = useHistory()
 
-    console.log("=================this is the spot================", spot)
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
         dispatch(getAllReviewsThunk(spotId))
-    }, [spotId, dispatch])
+    }, [spotId,reviews.length, dispatch])
 
     const deleteBtn = async (e) => {
         e.preventDefault()
@@ -85,7 +83,7 @@ const OneSpot = () => {
             </div>
             <div className="line-one-spot"></div>
             <div className="heading-for-reviews-s">
-                <h2><i class="fas fa-star"></i> {spot.avgRating} stars · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}</h2>
+                <h2><i class="fas fa-star"></i> {spot?.avgRating} stars · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}</h2>
             </div>
                 <Reviews spotId={spotId} sessionUser={sessionUser} />
             <div className="line-one-spot"></div>

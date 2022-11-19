@@ -71,7 +71,7 @@ html {
     .spots-container {
         display: grid;
         grid-template-columns: auto auto auto auto auto;
-        /* justify-content: space-evenly; */
+        justify-content: space-evenly;
     }
 }
 
@@ -79,7 +79,7 @@ html {
     .spots-container {
         display: grid;
         grid-template-columns: auto auto auto auto;
-        /* justify-content: space-evenly; */
+        justify-content: space-evenly;
     }
 }
 
@@ -87,6 +87,6 @@ html {
     .spots-container {
         display: grid;
         grid-template-columns: auto auto auto;
-        /* justify-content: space-evenly; */
+        justify-content: space-evenly;
     }
 }

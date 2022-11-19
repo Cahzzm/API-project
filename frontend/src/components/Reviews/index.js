@@ -10,11 +10,12 @@ const Reviews = ({spotId, sessionUser}) => {
     const spot = useSelector(state => state.spots.singleSpot)
     const [body, setBody] = useState("")
     const [rating, setRating] = useState(1)
+    console.log("===============", spot)
 
     useEffect(() => {
         dispatch(getAllReviewsThunk(spotId))
         dispatch(getOneSpotThunk(spotId))
-    }, [spotId, dispatch])
+    }, [spotId,spot.numReviews, dispatch])
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -49,10 +50,11 @@ const Reviews = ({spotId, sessionUser}) => {
                                 {sessionUser?.id === review.userId &&
                                     <>
                                         <button key={review.id} id="post-modal-del" onClick={() =>{
-
                                             dispatch(deleteReviewThunk(review.id))
                                             dispatch(getOneSpotThunk(spotId))
-                                            }}><i className="fa fa-trash"></i></button>
+                                            }}>
+                                            <i className="fa fa-trash"></i>
+                                        </button>
                                     </>
                                 }
                             </div>
