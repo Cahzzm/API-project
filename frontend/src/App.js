@@ -35,6 +35,11 @@ function App() {
           <Route exact path="/spots/:spotId/host">
             <EditSpot />
           </Route>
+          <Route>
+            <div style={{display: 'flex', justifyContent: 'center', fontSize: '48px', color: '#ff385c'}}>
+            404 RESOURCE NOT FOUND
+            </div>
+          </Route>
         </Switch>
       )}
       <Footer />

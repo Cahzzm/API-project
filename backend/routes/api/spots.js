@@ -239,7 +239,7 @@ router.get('/:spotId', async (req, res) => {
 router.put('/:spotId', requireAuth, async (req, res) => {
     const { spotId } = req.params
     const spot = await Spot.findByPk(spotId)
-    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const { address, city, state, country, name, description, price } = req.body
 
     if(!spot) {
         res.status(404)
@@ -251,7 +251,7 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
      else if(
             address === undefined || city === undefined || state === undefined ||
-            country === undefined || lat === undefined || lng === undefined ||
+            country === undefined ||
             name === undefined || description === undefined || price === undefined
             ) {
             res.status(400)
@@ -263,8 +263,8 @@ router.put('/:spotId', requireAuth, async (req, res) => {
                     city: "City is required",
                     state: "State is required",
                     country: "Country is required",
-                    lat: "Latitude is not valid",
-                    lng: "Longitude is not valid",
+                    // lat: "Latitude is not valid",
+                    // lng: "Longitude is not valid",
                     name: "Name must be less than 50 characters",
                     description: "Description is required",
                     price: "Price per day is required"
@@ -277,8 +277,8 @@ router.put('/:spotId', requireAuth, async (req, res) => {
             if(city !== undefined) spot.city = city
             if(state !== undefined) spot.state = state
             if(country !== undefined) spot.country = country
-            if(lat !== undefined) spot.lat = lat
-            if(lng !== undefined) spot.lng = lng
+            // if(lat !== undefined) spot.lat = lat
+            // if(lng !== undefined) spot.lng = lng
             if(name !== undefined) spot.name = name
             if(description !== undefined) spot.description = description
             if(price !== undefined) spot.price = price

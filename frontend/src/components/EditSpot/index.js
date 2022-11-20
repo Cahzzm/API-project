@@ -11,14 +11,14 @@ const EditSpot = () => {
     const dispatch = useDispatch()
     const session = useSelector(state => state.session)
     const { spotId } = useParams()
-    const spotDetails = useSelector(state => state.spots[spotId])
+    const spotDetails = useSelector(state => state.spots.singleSpot)
     const [name, setName] = useState(spotDetails.name)
     const [address, setAddress] = useState(spotDetails.address)
     const [city, setCity] = useState(spotDetails.city)
     const [state, setState] = useState(spotDetails.state)
     const [country, setCountry] = useState(spotDetails.country)
-    const [lat, setLatitude] = useState(spotDetails.lat)
-    const [lng, setLongitude] = useState(spotDetails.lng)
+    // const [lat, setLatitude] = useState(spotDetails.lat)
+    // const [lng, setLongitude] = useState(spotDetails.lng)
     const [price, setPrice] = useState(spotDetails.price)
     const [description, setDescription] = useState(spotDetails.description)
     const [errorValidations, setErrorValidations] = useState([])
@@ -32,8 +32,8 @@ const EditSpot = () => {
             city,
             state,
             country,
-            lat,
-            lng,
+            // lat,
+            // lng,
             price,
             description,
             ownerId: session.user.id,
@@ -53,13 +53,13 @@ const EditSpot = () => {
         if(city?.length === 0) errors.push("Please provide a city")
         if(state?.length === 0) errors.push("Please provide a state")
         if(country?.length === 0) errors.push("Please provide a country")
-        if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
-        if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
+        // if(!lat || isNaN(lat)) errors.push("Please provide a valid latitude")
+        // if(!lng || isNaN(lng)) errors.push("Please provide a valide longitude")
         if(price <= 0) errors.push("Please provid a price")
         if(description?.length === 0) errors.push("Please provide a description")
 
         setErrorValidations(errors)
-    }, [name, address, city, state, country, lat, lng, price, description])
+    }, [name, address, city, state, country, price, description])
 
 
     return (
@@ -118,7 +118,7 @@ const EditSpot = () => {
                             onChange={e => setCountry(e.target.value)}
                         />
                     </label>
-                    <label>Latitude:
+                    {/* <label>Latitude:
                         <input
                             type="number"
                             placeholder="Latitude"
@@ -133,7 +133,7 @@ const EditSpot = () => {
                             value={lng}
                             onChange={e => setLongitude(e.target.value)}
                         />
-                    </label>
+                    </label> */}
                     <label>Price:
                         <input
                             type="number"

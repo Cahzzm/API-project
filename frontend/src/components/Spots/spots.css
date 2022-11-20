@@ -90,3 +90,11 @@ html {
         justify-content: space-evenly;
     }
 }
+
+@media screen and (max-width: 890px) {
+    .spots-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-evenly;
+    }
+}

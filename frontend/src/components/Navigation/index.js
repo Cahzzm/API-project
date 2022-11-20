@@ -7,7 +7,6 @@ import './Navigation.css';
 import { Modal } from '../../context/Modal';
 import LoginForm from '../LoginFormModal/LoginForm';
 import SignupFormPage from '../SignupFormPage'
-import Demo from './Demo';
 // import LoginFormModal from '../LoginFormModal'
 
 function Navigation({ isLoaded }){
@@ -44,7 +43,7 @@ function Navigation({ isLoaded }){
           {sessionUser &&
             (
             <NavLink to="/spots/host">
-              <button id='host-home-button'>Nitrogennbnb your home</button>
+              <button id='host-home-button'>Nitrogenbnb your home</button>
             </NavLink>
             )
           }
@@ -61,7 +60,6 @@ function Navigation({ isLoaded }){
             {login ? <LoginForm setShowModal={setShowModal}/> : <SignupFormPage setShowModal={setShowModal}/>}
             </Modal>
           }
-          <Demo />
           </div>
         </div>
         <div className='bottom-navbar'>

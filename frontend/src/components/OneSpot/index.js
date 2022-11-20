@@ -17,6 +17,8 @@ const OneSpot = () => {
     const spot = useSelector(state => state.spots.singleSpot)
     const history = useHistory()
 
+    console.log("this is the one spot", spot)
+
     useEffect(() => {
         dispatch(getOneSpotThunk(spotId))
         dispatch(getAllReviewsThunk(spotId))
