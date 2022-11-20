@@ -10,7 +10,7 @@ const Reviews = ({spotId, sessionUser}) => {
     const spot = useSelector(state => state.spots.singleSpot)
     const [body, setBody] = useState("")
     const [rating, setRating] = useState(1)
-    console.log("===============", spot)
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         dispatch(getAllReviewsThunk(spotId))
@@ -19,6 +19,7 @@ const Reviews = ({spotId, sessionUser}) => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        setErrors([])
 
         const payload = {
             userId: sessionUser.id,
@@ -28,6 +29,10 @@ const Reviews = ({spotId, sessionUser}) => {
         }
 
         const newReview = await dispatch(addReviewThunk(payload, spot.id))
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data && data.meassage) setErrors(data.message);
+          });
 
         if(newReview) {
             dispatch(getAllReviewsThunk(spotId))
@@ -67,6 +72,9 @@ const Reviews = ({spotId, sessionUser}) => {
                     {spot?.ownerId !== sessionUser?.id &&
                         <>
                             <h3>Leave a Review</h3>
+                            <ul>
+                                {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+                            </ul>
                             <div className="star-rating">
                                 <input
                                 id="input-for-rating"
@@ -84,6 +92,7 @@ const Reviews = ({spotId, sessionUser}) => {
                                     placeholder="Leave a review"
                                     value={body}
                                     onChange={e => setBody(e.target.value)}
+                                    required
                                 />
                                 <button id="post-modal-dele" onClick={handleSubmit}>Submit</button>
                             </div>

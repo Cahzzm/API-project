@@ -308,7 +308,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
         })
     }
 
-    if(review === undefined || stars < 1) {
+    if(review === undefined || (stars < 1 && stars > 5)) {
         res.status(400)
         res.json({
             message: "Validation error",
