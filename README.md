@@ -35,8 +35,9 @@ This project was developed by Tyler Short. Below is a brief description of the f
 * Correlating the backend with the store and the frontend. There was a learning curve for how the data flowed and learning the pattern of this flow. Ultimately it came down to using console.log to understand how each section comminicated with eachother.
 
 ## Technologies
-- Node.js
-- React
-- Redux
-- CSS
-- FontAwesome
+<img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/><img 
+src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/><img  
+src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/><img  
+src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/><img  
+src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/><img  
+src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
