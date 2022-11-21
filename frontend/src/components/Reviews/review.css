@@ -21,3 +21,13 @@
 #input-for-rating {
     width: 10%;
 }
+
+#post-modal-del {
+    font-size: 14px;
+    width: fit-content;
+}
+
+#post-modal-del:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px rgba(211, 211, 211, 0.493);
+}
