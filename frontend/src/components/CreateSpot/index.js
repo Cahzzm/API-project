@@ -17,7 +17,7 @@ const CreateSpot = () => {
     const [country, setCountry] = useState("")
     // const [lat, setLatitude] = useState(0)
     // const [lng, setLongitude] = useState(0)
-    const [price, setPrice] = useState(0)
+    const [price, setPrice] = useState("")
     const [imageUrl, setImageUrl] = useState("")
     const [description, setDescription] = useState("")
     const [errorValidations, setErrorValidations] = useState([])
@@ -66,6 +66,7 @@ const CreateSpot = () => {
     }, [name, address, city, state, country, price, description])
 
     return (
+    <main className="form-container-holder">
         <div id="form-container">
             <h1>Host Form</h1>
             <div id="host-forms">
@@ -75,31 +76,34 @@ const CreateSpot = () => {
                     ))}
                 </ul>
                 <form onSubmit={handleSubmit}>
-                    <label>Spot Name:
+                    <label>
                         <input
+                            maxLength="25"
                             type="text"
                             placeholder="Spot Name"
                             value={name}
                             onChange={e => setName(e.target.value)}
                         />
                     </label>
-                    <label>Address:
+                    <label>
                         <input
                             type="text"
                             placeholder="Address"
+                            maxLength="50"
                             value={address}
                             onChange={e => setAddress(e.target.value)}
                         />
                     </label>
-                    <label>City:
+                    <label>
                         <input
                             type="text"
                             placeholder="City"
+                            maxLength="50"
                             value={city}
                             onChange={e => setCity(e.target.value)}
                         />
                     </label>
-                    <label>State:
+                    <label>
                         <select
                             type="text"
                             placeholder="State"
@@ -113,10 +117,11 @@ const CreateSpot = () => {
                             ))}
                         </select>
                     </label>
-                    <label>Country:
+                    <label>
                         <input
                             type="text"
                             placeholder="Country"
+                            maxLength="50"
                             value={country}
                             onChange={e => setCountry(e.target.value)}
                         />
@@ -137,7 +142,7 @@ const CreateSpot = () => {
                             onChange={e => setLongitude(e.target.value)}
                         />
                     </label> */}
-                    <label>Price:
+                    <label>
                         <input
                             type="text"
                             placeholder="Cost per night"
@@ -145,7 +150,7 @@ const CreateSpot = () => {
                             onChange={e => setPrice(e.target.value)}
                         />
                     </label>
-                    <label>Image:
+                    <label>
                         <input
                             type="url"
                             placeholder="Image url"
@@ -153,10 +158,11 @@ const CreateSpot = () => {
                             onChange={e => setImageUrl(e.target.value)}
                         />
                     </label>
-                    <label>Description:
+                    <label>
                         <input
                             type="text"
                             placeholder="Description"
+                            maxLength="100"
                             value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
@@ -174,6 +180,7 @@ const CreateSpot = () => {
                 </form>
             </div>
         </div>
+    </main>
     )
 }
 

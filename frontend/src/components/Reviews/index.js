@@ -86,6 +86,8 @@ const Reviews = ({spotId, sessionUser}) => {
                                 <input
                                 id="input-for-rating"
                                 type="number"
+                                min={1}
+                                max={5}
                                 value={rating}
                                 onChange={e => setRating(e.target.value)}
                                 >
@@ -99,6 +101,8 @@ const Reviews = ({spotId, sessionUser}) => {
                                     placeholder="Leave a review"
                                     value={body}
                                     onChange={e => setBody(e.target.value)}
+                                    minLength="1"
+                                    maxLength="100"
                                     required
                                 />
                                 <button id="post-modal-dele" onClick={handleSubmit}>Submit</button>

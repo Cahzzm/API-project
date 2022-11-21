@@ -18,6 +18,10 @@
 }
 
 #post-modal-dele:hover {
+    cursor: pointer;
+}
+
+#post-modal-dele:hover {
     background-color: rgba(255, 255, 255, 0.7);
 }
 

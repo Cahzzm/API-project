@@ -21,20 +21,21 @@ const Spots = () => {
                 <div className="spots-container">
                     {allSpots.map(spot => (
                         <div className="spot">
+                            <Link to={`/spots/${spot.id}`}>
                             <div className="image-container">
                                 <img id="spot-image" key={spot.id} alt="" src={spot.previewImage}></img>
                             </div>
 
                             <div className="spot-info">
                                 <div className="title-container">
-                                <Link to={`/spots/${spot.id}`}>
+
                                     <span id="all-spots-name" key={spot.id}>{spot.name}</span>
-                                </Link>
                                 <span id="spot-rating" key={spot.id}><i class="fas fa-star">{spot.avgRating}</i></span>
                                 </div>
-                                <p id="address-for-spot" key={spot.id}>{spot.city}, {spot.state}</p>
+                                <p id="address-for-spot" key={spot.id}>{spot.city.length + spot.state.length > 50 ? spot.state : `${spot.city}, ${spot.state}`}</p>
                                 <p id="price-per-night"key={spot.id}>${spot.price} night</p>
                             </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

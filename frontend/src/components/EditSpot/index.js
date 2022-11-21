@@ -72,31 +72,34 @@ const EditSpot = () => {
                     ))}
                 </ul>
                 <form onSubmit={handleSubmit}>
-                    <label>Spot Name:
+                    <label>
                         <input
                             type="text"
                             placeholder="Spot Name"
+                            maxLength="25"
                             value={name}
                             onChange={e => setName(e.target.value)}
                         />
                     </label>
-                    <label>Address:
+                    <label>
                         <input
                             type="text"
                             placeholder="Address"
+                            maxLength="50"
                             value={address}
                             onChange={e => setAddress(e.target.value)}
                         />
                     </label>
-                    <label>City:
+                    <label>
                         <input
                             type="text"
                             placeholder="City"
+                            maxLength="50"
                             value={city}
                             onChange={e => setCity(e.target.value)}
                         />
                     </label>
-                    <label>State:
+                    <label>
                         <select
                             type="text"
                             placeholder="State"
@@ -110,10 +113,11 @@ const EditSpot = () => {
                             ))}
                         </select>
                     </label>
-                    <label>Country:
+                    <label>
                         <input
                             type="text"
                             placeholder="Country"
+                            maxLength="50"
                             value={country}
                             onChange={e => setCountry(e.target.value)}
                         />
@@ -134,7 +138,7 @@ const EditSpot = () => {
                             onChange={e => setLongitude(e.target.value)}
                         />
                     </label> */}
-                    <label>Price:
+                    <label>
                         <input
                             type="number"
                             placeholder="Cost per night"
@@ -142,11 +146,12 @@ const EditSpot = () => {
                             onChange={e => setPrice(e.target.value)}
                         />
                     </label>
-                    <label>Description:
+                    <label>
                         <input
                             type="text"
                             placeholder="Description"
                             value={description}
+                            maxLength="100"
                             onChange={e => setDescription(e.target.value)}
                         />
                     </label>
