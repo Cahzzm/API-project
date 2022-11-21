@@ -1,6 +1,6 @@
-##Nitrogenbnb
+## Nitrogenbnb
 
-###General Info
+### General Info
 ***
 # Nitrogenbnb
 Nitrogenbnb is an application where users can post spots to host or review spots.
@@ -9,4 +9,4 @@ Nitrogenbnb is an application where users can post spots to host or review spots
 
 
 #### Nitrogenbnb Home page
-![Nitrogenbnb HomePage](C:\Users\Tyler\Pictures\nitrogenbnb-homepage.png)
+![Nitrogenbnb HomePage]()
