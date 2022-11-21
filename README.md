@@ -4,7 +4,7 @@
 ***
 # Nitrogenbnb
 Nitrogenbnb is an application where users can post spots to host or review spots.
-* Link to live [Nitrogenbnb](https://airbnb-api-backend-project.herokuapp.com/) project.
+* Link to live [Nitrogenbnb](https://nitrogenbnb.herokuapp.com/) project.
 
 
 
