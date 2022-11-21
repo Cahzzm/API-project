@@ -63,6 +63,7 @@ const EditSpot = () => {
 
 
     return (
+        <main className="form-container-holder">
         <div id="form-container">
             <h1>Host Form</h1>
             <div id="host-forms">
@@ -168,6 +169,7 @@ const EditSpot = () => {
                 </form>
             </div>
         </div>
+        </main>
     )
 }
 
