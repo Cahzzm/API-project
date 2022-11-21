@@ -30,6 +30,10 @@ This project was developed by Tyler Short. Below is a brief description of the f
 * Creating a review: When a user is logged in, below the displayed reviews, there will be an input field allowing the user to leave a review, along with a star rating from 1-5.
 * Deleting a review: When the logged in user that left a review wishes to delete their review they may do so a the click of a button. The average rating a number of reviews will update accordingly.
 
+#### Challenges:
+* During the styiling phase it was a little more difficult to style elements that were using state and learning their behaviors to flow smoothly with the normal elements.
+* Correlating the backend with the store and the frontend. There was a learning curve for how the data flowed and learning the pattern of this flow. Ultimately it came down to using console.log to understand how each section comminicated with eachother.
+
 ## Technologies
 - Node.js
 - React
