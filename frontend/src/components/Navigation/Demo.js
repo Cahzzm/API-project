@@ -1,9 +1,11 @@
 
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import * as sessionActions from '../../store/session'
 
 const Demo = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -12,6 +14,9 @@ const Demo = () => {
         const password = 'password'
 
         dispatch(sessionActions.login({ credential, password }))
+
+        history.push("/")
+
     }
 
     return (
