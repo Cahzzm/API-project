@@ -6,6 +6,15 @@
 Nitrogenbnb is an application where users can post spots to host or review spots.
 * Link to live [Nitrogenbnb](https://nitrogenbnb.herokuapp.com/) project.
 
+#### Nitrogenbnb Home Page
+![nitrogenbnb-homepage](https://user-images.githubusercontent.com/93847457/202997038-9e701078-ce42-48b3-9eb1-f38c8c3c53dd.png)
+
+#### Spot Details
+![nitrogenbnb-spotdetail](https://user-images.githubusercontent.com/93847457/202997595-00f89f5b-3bdd-4f80-87c6-9df07622f1bc.png)
+
+#### Create Spot
+![nitrogenbnb-createspot](https://user-images.githubusercontent.com/93847457/202998028-06a6bda5-cbad-4d9f-a776-2f0ff9def982.png)
+
 
 
 ## Collaboration
