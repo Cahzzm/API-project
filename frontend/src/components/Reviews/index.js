@@ -22,7 +22,7 @@ const Reviews = ({spotId, sessionUser}) => {
         const errors = []
 
         if(rating > 5 || rating < 1) errors.push("Star rating must be between 1 and 5")
-        if(body === '') errors.push("Please share your thoughts to leave a review")
+        if(body.length === 0) errors.push("Please share your thoughts to leave a review")
 
         setErrorValidations(errors)
     }, [body, rating])
@@ -105,7 +105,7 @@ const Reviews = ({spotId, sessionUser}) => {
                                     maxLength="100"
                                     required
                                 />
-                                <button id="post-modal-dele" onClick={handleSubmit}>Submit</button>
+                                <button id="post-modal-dele" disabled={errorValidations.length > 0} onClick={handleSubmit}>Submit</button>
                             </div>
                         </>
                     }
