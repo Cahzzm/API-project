@@ -10,16 +10,26 @@ const Reviews = ({spotId, sessionUser}) => {
     const spot = useSelector(state => state.spots.singleSpot)
     const [body, setBody] = useState("")
     const [rating, setRating] = useState(1)
-    const [errors, setErrors] = useState([])
+    const [errorValidations, setErrorValidations] = useState([])
 
     useEffect(() => {
         dispatch(getAllReviewsThunk(spotId))
         dispatch(getOneSpotThunk(spotId))
     }, [spotId,spot.numReviews, dispatch])
 
+
+    useEffect(() => {
+        const errors = []
+
+        if(rating > 5 || rating < 1) errors.push("Star rating must be between 1 and 5")
+        if(body === '') errors.push("Please share your thoughts to leave a review")
+
+        setErrorValidations(errors)
+    }, [body, rating])
+
+
     const handleSubmit = async e => {
         e.preventDefault()
-        setErrors([])
 
         const payload = {
             userId: sessionUser.id,
@@ -29,10 +39,7 @@ const Reviews = ({spotId, sessionUser}) => {
         }
 
         const newReview = await dispatch(addReviewThunk(payload, spot.id))
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.meassage) setErrors(data.message);
-          });
+
 
         if(newReview) {
             dispatch(getAllReviewsThunk(spotId))
@@ -73,7 +80,7 @@ const Reviews = ({spotId, sessionUser}) => {
                         <>
                             <h3>Leave a Review</h3>
                             <ul>
-                                {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+                                {errorValidations.map(error => <li key={spot.id}>{error}</li>)}
                             </ul>
                             <div className="star-rating">
                                 <input
