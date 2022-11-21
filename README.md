@@ -20,3 +20,10 @@ This project was developed by Tyler Short. Below is a brief description of the f
 * Rendering all reviews: When a user navigates to a single spot page all the reviews for that spot will be displayed below the details of that spot.
 * Creating a review: When a user is logged in, below the displayed reviews, there will be an input field allowing the user to leave a review, along with a star rating from 1-5.
 * Deleting a review: When the logged in user that left a review wishes to delete their review they may do so a the click of a button. The average rating a number of reviews will update accordingly.
+
+## Technologies
+- Node.js
+- React
+- Redux
+- CSS
+- FontAwesome
