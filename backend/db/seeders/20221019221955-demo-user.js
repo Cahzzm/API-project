@@ -259,8 +259,8 @@ module.exports = {
         endDate: '2022-10-29'
       }
     ])
-
-    await queryInterface.bulkInsert('Reviews', [
+    options.tableName = 'Reviews'
+    await queryInterface.bulkInsert(options, [
       {
         spotId: 1,
         userId: 1,
