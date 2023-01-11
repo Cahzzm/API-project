@@ -54,7 +54,6 @@ function Navigation({ isLoaded }){
               />
               )}
             {showModal && <Modal onClose={() => {
-              console.log("running close modal")
               setShowModal(false)
             }}>
             {login ? <LoginForm setShowModal={setShowModal}/> : <SignupFormPage setShowModal={setShowModal}/>}
