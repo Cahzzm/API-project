@@ -12,21 +12,21 @@ module.exports = {
     options.tableName = 'Users'
     await queryInterface.bulkInsert(options, [
       {
-        email: 'demo@email.io',
+        email: 'demo@emailll.io',
         username: 'DemoUserrrrrr',
         hashedPassword: bcrypt.hashSync('password'),
         firstName: 'Tyler',
         lastName: 'user'
       },
       {
-        email: 'user1@email.io',
+        email: 'user1@emaillll.io',
         username: 'FakeUsers',
         hashedPassword: bcrypt.hashSync('password2'),
         firstName: 'Aaron',
         lastName: 'user'
       },
       {
-        email: 'user2@email.io',
+        email: 'user2@emailllll.io',
         username: 'FakeUserss',
         hashedPassword: bcrypt.hashSync('password3'),
         firstName: 'Nathan',
@@ -34,7 +34,7 @@ module.exports = {
       },
 
       {
-        email: 'user3@email.io',
+        email: 'user3@emaillll.io',
         username: 'FakeUsersss',
         hashedPassword: bcrypt.hashSync('password4'),
         firstName: 'Sara',
@@ -42,7 +42,7 @@ module.exports = {
       },
 
       {
-        email: 'user4@email.io',
+        email: 'user4@emaillll.io',
         username: 'FakeUserssss',
         hashedPassword: bcrypt.hashSync('password5'),
         firstName: 'Michelle',
@@ -50,7 +50,7 @@ module.exports = {
       },
 
       {
-        email: 'user5@email.io',
+        email: 'user5@emailllll.io',
         username: 'FakeUsersssss',
         hashedPassword: bcrypt.hashSync('password6'),
         firstName: 'Lane',
