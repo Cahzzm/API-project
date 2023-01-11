@@ -2,9 +2,15 @@
 const bcrypt = require("bcryptjs");
 const spot = require("../models/spot");
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Users', [
+    options.tableName = 'Users'
+    await queryInterface.bulkInsert(options, [
       {
         email: 'demo@user.io',
         username: 'Demo-lition',
@@ -52,7 +58,8 @@ module.exports = {
       }
     ], {});
 
-    await queryInterface.bulkInsert('Spots', [
+    options.tableName = 'Spots'
+    await queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
         address: "123 Disney Lane",
@@ -222,8 +229,8 @@ module.exports = {
         price: 365
       }
     ])
-
-    await queryInterface.bulkInsert('Bookings', [
+    options.tableName = 'Bookings'
+    await queryInterface.bulkInsert(options, [
       {
         spotId: 1,
         userId: 1,
@@ -325,8 +332,8 @@ module.exports = {
         stars: 3
       },
     ])
-
-    await queryInterface.bulkInsert('SpotImages', [
+    options.tableName = 'SpotImages'
+    await queryInterface.bulkInsert(options, [
       {
         spotId: 1,
         url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/brewster-mcleod-architects-1486154143.jpg?crop=1.00xw:1.00xh;0,0&resize=768:*",
@@ -404,8 +411,8 @@ module.exports = {
         preview: true
       }
     ])
-
-    await queryInterface.bulkInsert('ReviewImages', [
+    options.tableName = 'ReviewImages'
+    await queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
         url: 'image.com',
@@ -432,17 +439,17 @@ module.exports = {
   down: async (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
 
-    await queryInterface.bulkDelete('ReviewImages')
+    await queryInterface.bulkDelete(options)
 
-    await queryInterface.bulkDelete('SpotImages')
+    await queryInterface.bulkDelete(options)
 
-    await queryInterface.bulkDelete('Reviews')
+    await queryInterface.bulkDelete(options)
 
-    await queryInterface.bulkDelete('Bookings')
+    await queryInterface.bulkDelete(options)
 
-    await queryInterface.bulkDelete('Spots')
+    await queryInterface.bulkDelete(options)
 
-    await queryInterface.bulkDelete('Users', {
+    await queryInterface.bulkDelete(options, {
       username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
     }, {});
   }
