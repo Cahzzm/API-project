@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import * as sessionActions from '../../store/session';
 import Demo from "./Demo";
 import './Navigation.css'
@@ -41,8 +42,17 @@ function ProfileButton({ user, setLogin, setShowModal }) {
       </button>
       {showMenu && ( user ?
         (<ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          <span>{user.username}</span>
+          <span>{user.email}</span>
+          <div className="line-one-spot-dropdown"></div>
+          <button className='user-spots-btn'>
+            <NavLink
+              className='my-bookings-btn'
+              to={`/my-bookings`}
+            >
+              My bookings
+            </NavLink>
+          </button>
             <button className="logout-dropdown-btn" onClick={logout}>Log Out</button>
         </ul>) :
         (<ul className="profile-dropdown">

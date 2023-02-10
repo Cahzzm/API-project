@@ -1,0 +1,203 @@
+.booking-details-component-container {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .11);
+    border-radius: 1em;
+    box-shadow: 0 0 1.5em rgba(0, 0, 0, .11);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+  }
+
+  .booking-details-component-numreviews {
+    color: rgba(0, 0, 0, .75);
+    font-size: 14px;
+    text-decoration: underline;
+  }
+
+  .booking-details-component-reviews {
+    align-items: center;
+    display: flex;
+    gap: .15em;
+    justify-content: center;
+  }
+
+  .booking-details-header,
+  .booking-details-header-errors {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .booking-details-header-errors {
+    flex-direction: column;
+  }
+
+  .booking-error {
+    color: red;
+    font-size: 11px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .check-in,
+  .check-out {
+    font-size: 10px;
+    margin: 0;
+    padding: .75em 0 0 0;
+  }
+
+  .check-in {
+    margin-left: 15px;
+  }
+
+  .check-in-out-date {
+    font-size: 11px;
+    margin: 0;
+  }
+
+  .date-input,
+  .date-input:focus {
+    background-color: transparent;
+    border: none;
+    font-size: 10px;
+    max-width: 8rem;
+    outline: none;
+  }
+
+  .date-guest-select-container {
+    align-items: center;
+    /* border: 1px solid rgba(0, 0, 0, .2); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1.25em 0 1.25em 0;
+    width: 100%;
+  }
+
+  .date-guest-btm {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-top: none;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    display: flex;
+    height: 4em;
+    justify-content: center;
+    margin-bottom: 1em;
+    width: 100%;
+  }
+
+  .date-guest-btm-select {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    justify-content: center;
+    padding: .75em;
+    width: 100%;
+  }
+
+  .date-guest-btm-right {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .date-guest-top {
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    display: flex;
+    height: 4em;
+    justify-content: space-between;
+    /* padding: 0 1em 0 1em; */
+    width: 100%;
+  }
+
+  .date-guest-top-left {
+    border-right: 1px solid rgba(0, 0, 0, .2);
+    max-width: 50%;
+    padding-right: 1em;
+  }
+
+  .date-guest-top-left,
+  .date-guest-top-right {
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .date-guest-top-right {
+    padding-left: 1em;
+  }
+
+  .num-guests-icon {
+    padding-right: 1em;
+    width: 100%;
+    text-align: right;
+  }
+
+  .guest-text,
+  .guest-count {
+    margin: 0;
+    padding-left: 1em;
+  }
+
+  .nightly-price,
+  .cleaning-fee,
+  .service-fee,
+  .total-price {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .no-charge-disclaimer {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .price-breakdown-container {
+    border-bottom: 1px solid rgba(0, 0, 0, .11);
+    width: 100%;
+    margin: 1.25em 0 1.25em 0;
+  }
+
+  .price-breakdown-left {
+    color: black;
+  }
+
+  .price-disclaimer {
+    font-size: 11px;
+    width: 100%;
+  }
+
+  .reserve-btn {
+    align-items: center;
+    /* color: #ff385c; */
+    background-color: #ff385c;
+    border: none;
+    border-radius: 1em;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    height: 3.5em;
+    margin-bottom: 1.25em;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  .spot-price {
+    font-size: 21px;
+  }

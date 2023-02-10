@@ -7,6 +7,7 @@ import { deleteSpotThunk } from "../../store/spot"
 import './onespot.css'
 import Reviews from "../Reviews"
 import { getAllReviewsThunk } from "../../store/review"
+import BookingDetails from "../Bookings"
 
 const OneSpot = () => {
     const { spotId } = useParams()
@@ -67,20 +68,29 @@ const OneSpot = () => {
                 </>
                 }
             </div>
-            <div className="host-one-spot">
-                <h2 className="h2-host-name">Hosted By: {spot.Owner.firstName} {spot.Owner.lastName}</h2>
-            </div>
-            <div className="line-one-spot"></div>
-            <h3 id='entire-home'><i class="fas fa-home"></i> Entire Home</h3>
-            <h4 id='home-yourself'>You'll have the house to yourself.</h4>
-            <h3 id='self-check'><i class="fas fa-key"></i> Self check-in</h3>
-            <h4 id='check-yourself'>Check yourself in with the keypad.</h4>
-            <h3 id='great-location'><i class="fas fa-map-marker-alt"></i> Great location</h3>
-            <h4 id='location-rating'>95% of recent guests gave the location a 5-star rating.</h4>
+            <div className="spots-details">
+                <div className="written-details">
+                <div className="host-one-spot">
+                    <h2 className="h2-host-name">Hosted By: {spot.Owner.firstName} {spot.Owner.lastName}</h2>
+                </div>
+                <div className="line-one-spot"></div>
+                <h3 id='entire-home'><i class="fas fa-home"></i> Entire Home</h3>
+                <h4 id='home-yourself'>You'll have the house to yourself.</h4>
+                <h3 id='self-check'><i class="fas fa-key"></i> Self check-in</h3>
+                <h4 id='check-yourself'>Check yourself in with the keypad.</h4>
+                <h3 id='great-location'><i class="fas fa-map-marker-alt"></i> Great location</h3>
+                <h4 id='location-rating'>95% of recent guests gave the location a 5-star rating.</h4>
 
-            <div className="line-one-spot"></div>
-            <div className="description-one-spot">
-                <p>{spot.description}</p>
+                <div className="line-one-spot"></div>
+                <div className="description-one-spot">
+                    <p>{spot.description}</p>
+                </div>
+                </div>
+                <div className='booking-details-container'>
+                    <div className='booking-details-component'>
+                    <BookingDetails spot={spot} />
+                    </div>
+                </div>
             </div>
             <div className="line-one-spot"></div>
             <div className="heading-for-reviews-s">
