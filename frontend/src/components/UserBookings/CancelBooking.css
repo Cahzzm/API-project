@@ -1,0 +1,41 @@
+.cancel-booking-body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em;
+    text-align: center;
+}
+
+.cancel-booking-btn,
+.cancel-booking-btns button {
+    background-color: #ff385c;
+    border: none;
+    border-radius: .5em;
+    color: white;
+    cursor: pointer;
+    height: 2em;
+    margin: 0.5em 0 1em;
+}
+
+.cancel-booking-btns {
+    align-items: center;
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}
+
+.cancel-booking-disclaimer {
+    font-size: 14px;
+}
+
+.cancel-booking-header {
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.cancel-booking-header>h2 {
+    font-size: 1.5em;
+}

@@ -1,0 +1,20 @@
+.user-bookings {
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2em;
+}
+
+.user-bookings-container    {
+    width: 90%;
+    text-align: center;
+    margin-left: 3.7%;
+}
+
+.user-bookings-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+}
+
+.user-bookings-header > h2{
+    font-size: 1.5em;
+}

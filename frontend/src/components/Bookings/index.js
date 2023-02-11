@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import * as bookingActions from '../../store/bookings';
 import * as spotActions from '../../store/spot';
@@ -9,6 +9,7 @@ import './bookings.css';
 export default function BookingDetails({ spot }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const sessionUser = useSelector(state => state.session.user)
   const [startDate, setStartDate] = useState('2023-04-03');
   const [endDate, setEndDate] = useState('2023-04-10');
   const [errors, setErrors] = useState([]);

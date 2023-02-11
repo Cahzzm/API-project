@@ -10,6 +10,7 @@ import CreateSpot from "./components/CreateSpot";
 import Footer from "./components/Footer";
 import EditSpot from "./components/EditSpot"
 import './index.css'
+import UserBookings from "./components/UserBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId/host">
             <EditSpot />
+          </Route>
+          <Route exact path="/my-bookings">
+            <UserBookings />
           </Route>
           <Route>
             <div style={{display: 'flex', justifyContent: 'center', fontSize: '48px', color: '#ff385c'}}>
