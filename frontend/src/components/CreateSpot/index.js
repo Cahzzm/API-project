@@ -72,7 +72,7 @@ const CreateSpot = () => {
             <div id="host-forms">
                 <ul>
                     {errorValidations.map(error => (
-                        <li key={error}>{error}</li>
+                        <div style={{color: 'red'}} key={error}>{error}</div>
                     ))}
                 </ul>
                 <form onSubmit={handleSubmit}>

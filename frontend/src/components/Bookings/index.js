@@ -98,16 +98,6 @@ export default function BookingDetails({ spot }) {
             <option value={3}>3 guests</option>
             <option value={4}>4 guests</option>
             <option value={5}>5 guests</option>
-            <option value={6}>6 guests</option>
-            <option value={7}>7 guests</option>
-            <option value={8}>8 guests</option>
-            <option value={9}>9 guests</option>
-            <option value={10}>10 guests</option>
-            <option value={11}>11 guests</option>
-            <option value={12}>12 guests</option>
-            <option value={13}>13 guests</option>
-            <option value={14}>14 guests</option>
-            <option value={15}>15 guests</option>
           </select>
         </div>
         <button

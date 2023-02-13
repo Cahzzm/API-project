@@ -3,8 +3,8 @@ import CancelBookingModal from './CancelBooking';
 import './SingleBooking.css';
 
 const SingleBooking = ({ booking }) => {
-  const spot = booking.Spot;
-  console.log('===============spot==========', spot)
+  const spot = booking?.Spot;
+  // console.log('===============spot==========', spot)
 
   const startDate = new Date(booking.startDate).toLocaleDateString(undefined, {
     weekday: 'short',
@@ -25,12 +25,12 @@ const SingleBooking = ({ booking }) => {
       <NavLink to={`/spots/${spot?.id}`}>
         <img
           className='spot-card-img'
-          src={spot.previewImage}
+          src={spot?.previewImage}
           alt=''
         />
       </NavLink>
       <div className='spot-text-container'>
-        <h3 className='spot-name bold'>{spot.address}</h3>
+        <h3 className='spot-name bold'>{spot?.address}</h3>
         <div className='booking-dates'>
           <p className='booking-date'>
             {new Date() < new Date(booking.startDate) ? 'Starting:' : 'Started:'}{' '}
