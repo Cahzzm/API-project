@@ -10,7 +10,7 @@ const Demo = () => {
     const handleClick = (e) => {
         e.preventDefault()
 
-        const credential = 'Demo-lition';
+        const credential = 'DemoUserrrrrr';
         const password = 'password'
 
         dispatch(sessionActions.login({ credential, password }))
